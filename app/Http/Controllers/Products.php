@@ -17,10 +17,6 @@ class Products extends Controller
      */
     public function index()
     {
-        if(DB::connection()->getDatabaseName())
-		{
-		   echo "Connected sucessfully to database ".DB::connection()->getDatabaseName().".";
-		}
     	$query = DB::table('users')->first();
         return View::make('hello', ['data'=>$query->username]);
     }

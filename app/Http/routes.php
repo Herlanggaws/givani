@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return View::make('layouts.default');
 });
 
 
 Route::get('/hello',function(){
-    return 'Hello World!';
+	return 'Hello World!';
 });
 
 Route::get('/products','Products@index');
