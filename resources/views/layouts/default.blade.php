@@ -32,7 +32,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!-- //header-ends -->
             <div id="page-wrapper">
                 <div class="graphs">
-                    CONTENT
+                    @yield('content')
                 </div>
             </div>
             <!--footer section start-->

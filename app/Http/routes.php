@@ -11,16 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-	return View::make('layouts.default');
-});
 
 
-Route::get('/hello',function(){
-	return 'Hello World!';
-});
-
-Route::get('/products','Products@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +26,14 @@ Route::get('/products','Products@index');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::get('/', function () {
+		return View::make('layouts.default');
+	});
+
+
+	Route::get('/hello',function(){
+		return 'Hello World!';
+	});
+
+	Route::resource('user','UserController');
 });
