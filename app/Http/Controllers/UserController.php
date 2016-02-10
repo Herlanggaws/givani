@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 use App\Http\Requests;
-use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Exception;
+
+use App\Exception\Handler;
+use Illuminate\Database\QueryException;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use App\User;
 
 class UserController extends Controller
@@ -18,7 +24,8 @@ class UserController extends Controller
      */
     public function index()
     {
-    	$users = User::all();
+    	$users = User::paginate(15);
+        // $users = DB::table('users')-paginate(2);
     	return view('user.index', compact('users'));
     }
 
@@ -38,11 +45,18 @@ class UserController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(CreateUserRequest $request)
+    public function store(UserRequest $request)
     {
+      try {
         User::create($request->all());
-        return redirect('user');
+        return redirect('user')->with('message', 'Data berhasil dibuat!');;
+    } catch (\Illuminate\Database\QueryException $e) {
+        return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+    } catch (\PDOException $e) {
+        return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
     }
+
+}
 
     /**
      * Display the specified resource.
@@ -81,9 +95,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->update($request->all());
+
+        return redirect('user')->with('message', 'Data berhasil dirubah!');;
     }
 
     /**
@@ -94,6 +112,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('user')->with('message', 'Data berhasil dihapus!');;
     }
 }
