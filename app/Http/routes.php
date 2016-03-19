@@ -26,9 +26,7 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/', function () {
-		return View::make('layouts.default');
-	});
+	
 
 
 	Route::get('/hello',function(){
@@ -36,4 +34,19 @@ Route::group(['middleware' => ['web']], function () {
 	});
 
 	Route::resource('user','UserController');
+	Route::resource('type','TypeController');
+	Route::resource('customer','CustomerController');
+
+	Route::get('auth/login', 'Auth\AuthController@getLogin');
+	Route::post('auth/login', 'Auth\AuthController@postLogin');
+	Route::get('auth/logout', 'Auth\AuthController@getLogout');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+
+    Route::get('/', 'HomeController@index');
+
 });

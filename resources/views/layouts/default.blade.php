@@ -32,7 +32,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <!-- //header-ends -->
             <div id="page-wrapper">
                 <div class="graphs">
-                    @yield('content')
+                    <div class="xs tabls">
+                        <div class="bs-example4" data-example-id="contextual-table">
+                            @yield('content')
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--footer section start-->

@@ -52,7 +52,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-        ]);
+            ]);
     }
 
     /**
@@ -67,6 +67,21 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
+    }
+
+
+
+      /**
+     * Handle an authentication attempt.
+     *
+     * @return Response
+     */
+      public function authenticate()
+      {
+        if (Auth::attempt(['email' => $email, 'password' => $password]))
+        {
+            return redirect()->intended('dashboard');
+        }
     }
 }

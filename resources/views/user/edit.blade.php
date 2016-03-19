@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Create</h3>
+<h3 class="blank1">Ubah Data: {{$user->name}}</h3>
 
 <div class="tab-content">
 	<div class="tab-pane active" id="horizontal-form">

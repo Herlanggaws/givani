@@ -1,8 +1,8 @@
 <div class="form-group">
-	{!! Form::label('name', 'NAMA',['class'=>'col-sm-2 control-label']) !!}
+	{!! Form::label('name', 'Nama',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
-		{!! Form::text('name', null, ['class'=> 'form-control1', 'id'=>'focusedinput', 'placeholder'=>'Default Input']) !!}
+		{!! Form::text('name', null, ['class'=> 'form-control1', 'id'=>'focusedinput', 'placeholder'=>'Nama']) !!}
 	</div>
 </div>
 
@@ -14,7 +14,7 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('password', 'PASSWORD',['class'=>'col-sm-2 control-label']) !!}
+	{!! Form::label('password', 'Passwrod',['class'=>'col-sm-2 control-label']) !!}
 	<div class="col-sm-8">
 		{!! Form::password('password', array('class'=> 'form-control1', 'id'=>'inputPassword', 'placeholder'=>'Password')) !!}
 	</div>

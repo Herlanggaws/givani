@@ -3,20 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+
 use App\Http\Requests;
-use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+
+
+use DB;
+use App\Http\Requests\TypeRequest;
 use App\Http\Controllers\Exception;
 
 use App\Exception\Handler;
 use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use App\User;
+use App\Type;
 
-class UserController extends Controller
+class TypeController extends Controller
 {
+
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +38,8 @@ class UserController extends Controller
      */
     public function index()
     {
-    	$users = User::paginate(5);
-        // $users = DB::table('users')-paginate(2);
-    	return view('user.index', compact('users'));
+    	$types = Type::paginate(2);
+    	return view('type.index', compact('types'));
     }
 
     /**
@@ -36,7 +49,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+    	return view('type.create');
     }
 
     /**
@@ -45,18 +58,18 @@ class UserController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(UserRequest $request)
+    public function store(TypeRequest $request)
     {
-      try {
-        User::create($request->all());
-        return redirect('user')->with('message', 'Data berhasil dibuat!');;
-    } catch (\Illuminate\Database\QueryException $e) {
-        return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-    } catch (\PDOException $e) {
-        return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-    }
+    	try {
+    		Type::create($request->all());
+    		return redirect('type')->with('message', 'Data berhasil dibuat!');;
+    	} catch (\Illuminate\Database\QueryException $e) {
+    		return redirect('type')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+    	} catch (\PDOException $e) {
+    		return redirect('type')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+    	}
 
-}
+    }
 
     /**
      * Display the specified resource.
@@ -66,12 +79,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-    	$user = User::findOrFail($id);
+    	$type = Type::findOrFail($id);
 
-    	if (is_null($user)){
+    	if (is_null($type)){
     		return "ga ada";
     	}else {
-    		return view('user.show', compact('user'));	
+    		return view('type.show', compact('type'));	
     	}
     	
     }
@@ -84,8 +97,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-    	$user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+    	$type = Type::findOrFail($id);
+    	return view('type.edit', compact('type'));
     }
 
     /**
@@ -95,13 +108,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(TypeRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+    	$type = Type::findOrFail($id);
 
-        $user->update($request->all());
+    	$type->update($request->all());
 
-        return redirect('user')->with('message', 'Data berhasil dirubah!');;
+    	return redirect('type')->with('message', 'Data berhasil dirubah!');;
     }
 
     /**
@@ -112,7 +125,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect('user')->with('message', 'Data berhasil dihapus!');;
+    	Type::destroy($id);
+    	return redirect('type')->with('message', 'Data berhasil dihapus!');;
     }
+
 }

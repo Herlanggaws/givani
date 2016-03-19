@@ -13,39 +13,37 @@
 
         <!--sidebar nav start-->
         <ul class="nav nav-pills nav-stacked custom-nav">
-            <li><a href="index.html"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
 
-            <li class="menu-list act"><a href="#"><i class="lnr lnr-book"></i>  <span>Data</span></a> 
+            <li class="menu-list"><a href="#"><i class="lnr lnr-book"></i>  <span>Data</span></a> 
                 <ul class="sub-menu-list">
-                    <li><a href="{{ URL::to('user/') }}">Data Pengguna</a> </li>
-                    <li><a href="sign-up.html">Data Barang</a></li>
+                    <li><a href="{{ URL::to('user/') }}">Pengguna</a> </li>
+                    <li><a href="{{ URL::to('customer/') }}">Pelanggan</a> </li>
+                    <li><a href="#">Pembelian</a></li>
                 </ul>
             </li>
 
-            <li><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Forms</span></a></li>
-            <li><a href="tables.html"><i class="lnr lnr-menu"></i> <span>Tables</span></a></li>              
-            <li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>MailBox</span></a>
+
+            <li class="menu-list"><a href="#"><i class="lnr lnr-menu"></i>  <span>Barang</span></a> 
                 <ul class="sub-menu-list">
-                    <li><a href="inbox.html">Inbox</a> </li>
-                    <li><a href="compose-mail.html">Compose Mail</a></li>
+                    <li><a href="{{ URL::to('type/') }}">Jenis Barang</a></li>
+                    <li><a href="#">Stok Barang</a></li>
+                    <li><a href="#">Barang Masuk</a></li>
+                    <li><a href="#">Barang Keluar</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i> <span>Transaksi</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="#">Barang Masuk</a> </li>
+                    <li><a href="#">Barang Keluar</a></li>
+                    <li><a href="#">Pembelian</a></li>
                 </ul>
             </li>  
-            <li class="menu-list"><a href="#"><i class="lnr lnr-indent-increase"></i> <span>Menu Levels</span></a>  
-                <ul class="sub-menu-list">
-                    <li><a href="charts.html">Basic Charts</a> </li>
-                </ul>
-            </li>
-            <li><a href="codes.html"><i class="lnr lnr-pencil"></i> <span>Typography</span></a></li>
-            <li><a href="media.html"><i class="lnr lnr-select"></i> <span>Media Css</span></a></li>
             
 
             <li class="menu-list">
                 <a href="#"><i class="lnr lnr-cog"></i>
                     <span>Setting</span></a>
-                    <ul class="sub-menu-list">
-                        <li><a href="grids.html">Grids</a> </li>
-                        <li><a href="widgets.html">Widgets</a></li>
-                    </ul>
                 </li>
             </ul>
             <!--sidebar nav end-->

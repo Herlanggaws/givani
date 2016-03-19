@@ -8,9 +8,9 @@
 </div>
 @endif
 
-		<?php echo $users->render(); ?><br/>
+		<?php echo $types->render(); ?><br/>
 		<div class="breadcrumb">
-			<a href="{{ URL::to('user/create') }}">Buat Data</a>
+			<a href="{{ URL::to('type/create') }}">Buat Data</a>
 
 			
 		</div>
@@ -22,21 +22,17 @@
 					<tr>
 						
 						<th>Name</th>
-						<th>Email</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($users as $user)
+					@foreach($types as $type)
 					<tr>
 						
-						<td>{{ $user->name }}</td>
-						<td>{{ $user->email }}</td>
+						<td>{{ $type->name }}</td>
 						<td>
-							<!-- <a href="{{url ('user', $user->id)}}"class="btn btn_5 btn-lg btn-link">Tampil </a>
-							|  -->
-							<a href="{{ URL::to('user/' . $user->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
-							{!! Form::model($user, ['method'=> 'DELETE', 'action' => ['UserController@destroy', $user->id],'class'=>'btn btn-xs btn-link']) !!}
+							<a href="{{ URL::to('type/' . $type->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
+							{!! Form::model($type, ['method'=> 'DELETE', 'action' => ['TypeController@destroy', $type->id],'class'=>'btn btn-xs btn-link']) !!}
 							{!! Form::submit('Hapus',['class'=>'btn btn-xs btn-link']) !!}
 							{!! Form::close() !!}
 						</td>
@@ -45,11 +41,10 @@
 					@endforeach
 
 					
-
-					
 				</tbody>
 			</table>
 		</div>
+	
 
 
 @stop
