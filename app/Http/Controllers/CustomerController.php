@@ -36,8 +36,8 @@ class CustomerController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
+     public function create()
+     {
         return view('customer.create');
     }
 
@@ -49,14 +49,17 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-      try {
-        CustomerRequest::create($request->all());
-        return redirect('customer')->with('message', 'Data berhasil dibuat!');;
-    } catch (\Illuminate\Database\QueryException $e) {
-        return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-    } catch (\PDOException $e) {
-        return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-    }
 
-}
+
+
+        try {
+            Customer::create($request->all());
+            return redirect('customer')->with('message', 'Data berhasil dibuat!');;
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+        } catch (\PDOException $e) {
+            return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+        }
+
+    }
 }

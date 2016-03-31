@@ -47,16 +47,16 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-      try {
-        User::create($request->all());
-        return redirect('user')->with('message', 'Data berhasil dibuat!');;
-    } catch (\Illuminate\Database\QueryException $e) {
-        return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-    } catch (\PDOException $e) {
-        return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-    }
+        try {
+            User::create($request->all());
+            return redirect('user')->with('message', 'Data berhasil dibuat!');;
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+        } catch (\PDOException $e) {
+            return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+        }
 
-}
+    }
 
     /**
      * Display the specified resource.
