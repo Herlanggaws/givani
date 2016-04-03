@@ -11,8 +11,6 @@
 		<?php echo $users->render(); ?><br/>
 		<div class="breadcrumb">
 			<a href="{{ URL::to('user/create') }}">Buat Data</a>
-
-			
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered">

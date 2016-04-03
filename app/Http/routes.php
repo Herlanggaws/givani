@@ -36,6 +36,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('user','UserController');
 	Route::resource('type','TypeController');
 	Route::resource('customer','CustomerController');
+	Route::resource('item','ItemsController');
+	Route::resource('itemin','IteminController');
 
 	Route::get('auth/login', 'Auth\AuthController@getLogin');
 	Route::post('auth/login', 'Auth\AuthController@postLogin');

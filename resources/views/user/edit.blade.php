@@ -2,21 +2,18 @@
 @section('content')
 <h3 class="blank1">Ubah Data: {{$user->name}}</h3>
 
-<div class="tab-content">
-	<div class="tab-pane active" id="horizontal-form">
-	</div>
-</div>
-
-
+<ol class="breadcrumb">
+	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
+</ol>
 
 {!! Form::model($user, ['method'=> 'PATCH', 'action' => ['UserController@update', $user->id],'class'=>'form-horizontal']) !!}
-@include('user.form', ['buttonName'=>'Ubah']);
+@include('user.form', ['buttonName'=>'Ubah'])
 {!! Form::close() !!}
 
 
 
 
 
-@include('errors.list');
+@include('errors.list')
 
 @stop

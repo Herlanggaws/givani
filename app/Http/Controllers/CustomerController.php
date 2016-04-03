@@ -62,4 +62,63 @@ class CustomerController extends Controller
         }
 
     }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $customer = Customer::findOrFail($id);
+
+        if (is_null($customer)){
+            return "ga ada";
+        }else {
+            return view('customer.show', compact('customer'));  
+        }
+        
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $customer = Customer::findOrFail($id);
+        return view('customer.edit', compact('customer'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(CustomerRequest $request, $id)
+    {
+        $customer = Customer::findOrFail($id);
+
+        $customer->update($request->all());
+
+        return redirect('customer')->with('message', 'Data berhasil dirubah!');;
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        Customer::destroy($id);
+        return redirect('customer')->with('message', 'Data berhasil dihapus!');;
+    }
 }

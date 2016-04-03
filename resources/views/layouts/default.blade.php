@@ -33,7 +33,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div id="page-wrapper">
                 <div class="graphs">
                     <div class="xs tabls">
-                        <div class="bs-example4" data-example-id="contextual-table">
+                        <div class="bs-example4" data-example-id="simple-responsive-table">
                             @yield('content')
                         </div>
                     </div>

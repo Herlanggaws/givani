@@ -26,7 +26,7 @@
             <li class="menu-list"><a href="#"><i class="lnr lnr-menu"></i>  <span>Barang</span></a> 
                 <ul class="sub-menu-list">
                     <li><a href="{{ URL::to('type/') }}">Jenis Barang</a></li>
-                    <li><a href="#">Stok Barang</a></li>
+                    <li><a href="{{ URL::to('item/') }}">Stok Barang</a></li>
                     <li><a href="#">Barang Masuk</a></li>
                     <li><a href="#">Barang Keluar</a></li>
                 </ul>

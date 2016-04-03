@@ -2,15 +2,14 @@
 @section('content')
 <h3 class="blank1">Buat Data Pengguna</h3>
 
-<div class="tab-content">
-    <div class="tab-pane active" id="horizontal-form">
-    </div>
-</div>
+<ol class="breadcrumb">
+	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
+</ol>
 
 {!! Form::open(['url'=>'user','class'=>'form-horizontal']) !!}
-@include('user.form', ['buttonName'=>'Buat']);
+@include('user.form', ['buttonName'=>'Buat'])
 {!! Form::close() !!}
 
-@include('errors.list');
+@include('errors.list')
 
 @stop

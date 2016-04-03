@@ -6,9 +6,12 @@
 	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
 </ol>
 
-{!! Form::open(['url'=>'customer','class'=>'form-horizontal']) !!}
-@include('customer.form', ['buttonName'=>'Buat'])
+
+{!! Form::model($customer, ['method'=> 'PATCH', 'action' => ['CustomerController@update', $customer->id],'class'=>'form-horizontal']) !!}
+@include('customer.form', ['buttonName'=>'Ubah'])
 {!! Form::close() !!}
+
+
 
 @include('errors.list')
 

@@ -15,4 +15,8 @@ class Type extends Model
         'name'
     ];
 
+    public function getList(){
+    	return $this->select('id','name');
+    }
+
 }

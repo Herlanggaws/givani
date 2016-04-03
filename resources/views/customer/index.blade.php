@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Pengguna</h3>
+<h3 class="blank1">Pelanggan</h3>
 
 @if (session('message'))
 <div class="alert alert-success">
@@ -21,6 +21,7 @@
 						<th>Nama</th>
 						<th>Nama Perusahaan</th>
 						<th>Alamat</th>
+						<th>Email</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -33,7 +34,8 @@
 						<td>{{ $customer->address }}</td>
 						<td>{{ $customer->email }}</td>
 						<td>
-							<a href="{{ URL::to('customer/' . $customer->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
+							<a href="{{url ('customer', $customer->id)}}"class="btn btn-xs btn-link">Lihat	 </a>
+							| <a href="{{ URL::to('customer/' . $customer->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
 							{!! Form::model($customer, ['method'=> 'DELETE', 'action' => ['CustomerController@destroy', $customer->id],'class'=>'btn btn-xs btn-link']) !!}
 							{!! Form::submit('Hapus',['class'=>'btn btn-xs btn-link']) !!}
 							{!! Form::close() !!}
