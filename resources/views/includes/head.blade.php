@@ -30,3 +30,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- Meters graphs -->
 <script src="{{ URL::asset('assets/js/jquery-1.10.2.min.js') }}"></script>
 <!-- Placed js at the end of the document so the pages load faster -->
+
+<link href="{{ URL::asset('assets/css/jquery-ui.css') }}" rel="stylesheet">
+<script src="{{ URL::asset('assets/js/jquery-1.8.2.js') }}"></script>
+<script src="{{ URL::asset('assets/js/jquery-ui.js') }}"></script>
+<script>
+$(function() {
+$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>

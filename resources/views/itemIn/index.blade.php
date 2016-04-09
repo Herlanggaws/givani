@@ -10,7 +10,7 @@
 
 		<?php echo $itemIns->render(); ?><br/>
 		<div class="breadcrumb">
-			<a href="{{ URL::to('itemIn/create') }}">Buat Data</a>
+			<a href="{{ URL::to('itemin/create') }}">Buat Data</a>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered">
@@ -27,7 +27,7 @@
 				<tbody>
 					@foreach($itemIns as $itemIn)
 					<tr>
-						
+						<td>{{ $itemIn->id }}</td>
 						<td>{{ $itemIn->date }}</td>
 						<td>{{ $itemIn->description }}</td>
 						<td>

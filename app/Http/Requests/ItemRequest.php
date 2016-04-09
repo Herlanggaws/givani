@@ -24,7 +24,12 @@ class ItemRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|min:3'
+        'name' => 'required|min:3',
+        'production_price' => 'required',
+        'minimum_price' => 'required',
+        'price' => 'required',
+        'minimum_stock' => 'required',
+        'type_id' => 'required'
         ];
     }
 }
