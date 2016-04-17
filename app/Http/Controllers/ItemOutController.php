@@ -36,7 +36,8 @@ class ItemOutController extends Controller
 
     public function create()
     {
-    	return view('itemout.create');
+        $items = Item::all();
+    	return view('itemout.create', compact('items'));
     }
 
 

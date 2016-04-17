@@ -39,6 +39,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('item','ItemsController');
 	Route::resource('itemin','IteminController');
 	Route::resource('itemout','ItemOutController');
+	Route::resource('transaction','TransactionController');
+	Route::resource('price','PriceController');
 
 	
 

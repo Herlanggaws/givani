@@ -49,8 +49,62 @@
 	</table>
 
 </div>
+<?php echo $prices->render(); ?><br/>
+<div class="table-responsive">
+
+	{!! Form::open(['method'=>'GET','url'=>url ('customer', $customer->id),null,'role'=>'search'])  !!}
 
 
+
+
+
+
+	<table style="float: right; !important" width="50%">
+		<tr>
+			<td width="50%">
+				<div class="input-group in-grp1" style="margin: 0 0 0 0; width:90%; !important">							
+					<span class="input-group-addon">
+						<i class="fa fa-search"></i>
+					</span>
+					<input id="searchbox" type="text" class="form-control1" name= "search" placeholder="Search..." onkeydown="showHint(this.value)">
+				</div>
+			</td>
+			<td>
+				{!! Form::submit('Cari',['class'=>'btn-success btn']) !!}
+			</td>
+		</tr>
+	</table>
+
+	{!! Form::close() !!}
+	<div style="height: 60px;">
+
+	</div>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Nama Barang</th>
+				<th>Harga</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach($prices as $price)
+			<tr>
+				<td>{{ $price->item->name }}</td>
+				<td>{{ $price->custom_price }}</td>
+				<td>
+					<a href="{{ URL::to('price/' . $price->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a>
+				</td>
+			</tr>
+
+			@endforeach
+
+
+
+
+		</tbody>
+	</table>
+</div>
 
 
 

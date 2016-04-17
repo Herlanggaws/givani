@@ -99,10 +99,10 @@ function typePrice(){
 }
 
 function checkMinimumPrice() {
-	var price =parseInt($("#price").val());
+	var productionPrice = parseInt($("#productionPrice").val());
 	var minimumPrice = parseInt($("#minimumPrice").val());
 
-	if (price > minimumPrice || isNaN(minimumPrice)){
+	if (productionPrice > minimumPrice || isNaN(minimumPrice)){
 		$("#divCheckMinimumPrice").html("Harga Minimum Terlalu Rendah");
 		document.getElementById("mySubmit").disabled = true;
 	}else{

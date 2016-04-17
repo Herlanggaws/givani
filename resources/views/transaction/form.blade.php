@@ -20,8 +20,6 @@
 
 <div class="table-responsive">
 	<table class="table">
-
-
 		<thead>
 			<tr>
 				<th>
@@ -30,12 +28,17 @@
 				<th>
 					Jumlah		
 				</th>
+				<th>
+					Harga
+				</th>
+				<th>
+					Subtotal
+				</th>
 			</tr>
 
 		</thead>
 		<tbody id="dynamicInput">
 			<tr>
-
 				<td>
 				</td>
 				<td></td>

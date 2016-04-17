@@ -28,15 +28,14 @@
                     <li><a href="{{ URL::to('type/') }}">Jenis Barang</a></li>
                     <li><a href="{{ URL::to('item/') }}">Stok Barang</a></li>
                     <li><a href="{{ URL::to('itemin/') }}">Barang Masuk</a></li>
-                    <li><a href="#">Barang Keluar</a></li>
+                    <li><a href="{{ URL::to('itemout/') }}">Barang Keluar</a></li>
                 </ul>
             </li>
 
             <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i> <span>Transaksi</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="#">Barang Masuk</a> </li>
-                    <li><a href="#">Barang Keluar</a></li>
-                    <li><a href="#">Pembelian</a></li>
+                    <li><a href="{{ URL::to('transaction/') }}">Transaksi Umum</a> </li>
+                    <li><a href="#">Transaksi Khusus</a></li>
                 </ul>
             </li>  
             

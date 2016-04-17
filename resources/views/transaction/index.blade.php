@@ -8,9 +8,9 @@
 </div>
 @endif
 
-		<?php echo $itemOuts->render(); ?><br/>
+		<?php echo $transactions->render(); ?><br/>
 		<div class="breadcrumb">
-			<a href="{{ URL::to('itemout/create') }}">Buat Data</a>
+			<a href="{{ URL::to('transaction/create') }}">Buat Data</a>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered">
@@ -25,13 +25,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($itemOuts as $itemOut)
+					@foreach($transactions as $transaction)
 					<tr>
-						<td>{{ $itemOut->id }}</td>
-						<td>{{ $itemOut->date }}</td>
-						<td>{{ $itemOut->description }}</td>
+						<td>{{ $transaction->id }}</td>
+						<td>{{ $transaction->date }}</td>
+						<td>{{ $transaction->description }}</td>
 						<td>
-							<a href="{{url ('itemout', $itemOut->id)}}"class="btn btn-xs btn-link">Lihat</a>
+							<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Lihat</a>
 						</td>
 					</tr>
 					

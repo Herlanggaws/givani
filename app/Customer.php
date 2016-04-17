@@ -17,5 +17,7 @@ class Customer extends Model
      'name', 'company_name', 'email', 'phone','mobile', 'address', 'pos_code',
      ];
 
-     
+     public function prices(){
+    	return $this->hasMany('App\Price');
+    }
  }

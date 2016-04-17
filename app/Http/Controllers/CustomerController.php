@@ -17,6 +17,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use App\Customer;
+use App\Price;
+use App\Item;
 
 class CustomerController extends Controller
 {
@@ -57,11 +59,15 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-
-
-
         try {
+
             Customer::create($request->all());
+            $customer = Customer::orderBy('created_at', 'desc')->first();    
+            $items = Item::all();
+            foreach ($items as $item) {
+                Price::create(['item_id'=>$item->id, 'customer_id'=>$customer->id, 'custom_price'=>$item->price]);
+            }
+            
             return redirect('customer')->with('message', 'Data berhasil dibuat!');;
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
@@ -80,12 +86,26 @@ class CustomerController extends Controller
      public function show($id)
      {
         $customer = Customer::findOrFail($id);
+        
+        $prices = $customer->prices()->paginate(10);
+        $search = \Request::get('search');
 
-        if (is_null($customer)){
-            return "ga ada";
-        }else {
-            return view('customer.show', compact('customer'));  
+        if (is_null($search) || $search == ""){
+
+            if (is_null($customer)){
+                return "ga ada";
+            }else {
+                return view('customer.show', compact('customer', 'prices'));  
+            }
+        }else{
+            $item = Item::where('name','like','%'.$search.'%')->orderBy('name')->first();
+            // $prices = Price::peginate(10);
+            // $prices = Price::
+            $prices = Price::where('customer_id','like','%'.$customer->id.'%')->where('item_id','like','%'.$item->id.'%')->orderBy('customer_id')->paginate(10);
+            return view('customer.show', compact('customer', 'prices'));  
         }
+
+        
         
     }
 
