@@ -17,11 +17,11 @@
                             <!-- <input type="email" class="form-control" name="email" value="{{ old('email') }}"onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"> -->
                             <div class="log-input">
                                 <div class="log-input-left">
-                                 <input type="text" class="user"name="email" value="{{ old('email') }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/>
+                                   <input type="text" class="user"name="email" value="{{ old('email') }}" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email address:';}"/>
 
 
-                                 @if ($errors->has('email'))
-                                 <span class="help-block">
+                                   @if ($errors->has('email'))
+                                   <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                                 @endif
@@ -56,11 +56,12 @@
                     </div>
                     <input type="submit" value="Login to your account">
                     <div class="form-group">
-
+                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a> | <a class="btn btn-link" href="{{ url('/register') }}">Registrasi</a><br>
                         <div class="col-md-6 col-md-offset-4">
 
 
-                            <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                            
+                            
                         </div>
                     </div>
                     

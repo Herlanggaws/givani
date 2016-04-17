@@ -14,4 +14,9 @@ class DetailItemIn extends Model
     protected $fillable = [
     'qty', 'item_id', 'item_in_id',
     ];
+
+
+    public function item(){
+    	 return $this->belongsTo('App\Item')->withTrashed();
+    }
 }

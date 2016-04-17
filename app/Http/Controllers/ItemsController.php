@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Item;
 use App\Type;
 use App\Http\Requests\ItemRequest;
+use Request;
 
 class ItemsController extends Controller
 {
@@ -31,8 +32,19 @@ class ItemsController extends Controller
      */
     public function index()
     {
-    	$items = Item::paginate(10);
-    	return view('item.index', compact('items'));
+
+        $search = \Request::get('search');
+        $getCategory = \Request::get('category');
+        if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
+            $items = Item::paginate(10);
+        }else{
+            $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+        }
+        
+        
+
+        $category = array(''=>'kategori','name'=>'Nama Barang', 'type_id'=>'Jenis Barang');
+        return view('item.index', compact('items','category'));
     }
 
     public function create()

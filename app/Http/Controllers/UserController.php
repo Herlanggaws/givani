@@ -24,9 +24,18 @@ class UserController extends Controller
      */
     public function index()
     {
-    	$users = User::paginate(10);
-        // $users = DB::table('users')-paginate(2);
-    	return view('user.index', compact('users'));
+        $search = \Request::get('search');
+        $getCategory = \Request::get('category');
+        
+        if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
+            $users = User::paginate(10);
+        }else{
+            $users = User::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+        }
+
+        $category = array(''=>'kategori','name'=>'name','email'=>'email');
+        
+        return view('user.index', compact('users','category'));
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Barang Masuk</h3>
+<h3 class="blank1">Pengguna</h3>
 
 @if (session('message'))
 <div class="alert alert-success">
@@ -8,9 +8,9 @@
 </div>
 @endif
 
-		<?php echo $itemIns->render(); ?><br/>
+		<?php echo $itemOuts->render(); ?><br/>
 		<div class="breadcrumb">
-			<a href="{{ URL::to('itemin/create') }}">Buat Data</a>
+			<a href="{{ URL::to('itemout/create') }}">Buat Data</a>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered">
@@ -18,20 +18,20 @@
 
 				<thead>
 					<tr>
-						<th>Kode Masuk</th>
+						<th>Kode Keluar</th>
 						<th>Tanggal</th>
 						<th>Deskripsi</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($itemIns as $itemIn)
+					@foreach($itemOuts as $itemOut)
 					<tr>
-						<td>{{ $itemIn->id }}</td>
-						<td>{{ $itemIn->date }}</td>
-						<td>{{ $itemIn->description }}</td>
+						<td>{{ $itemOut->id }}</td>
+						<td>{{ $itemOut->date }}</td>
+						<td>{{ $itemOut->description }}</td>
 						<td>
-							<a href="{{url ('itemin', $itemIn->id)}}"class="btn btn-xs btn-link">Lihat</a>
+							<a href="{{url ('itemout', $itemOut->id)}}"class="btn btn-xs btn-link">Lihat</a>
 						</td>
 					</tr>
 					

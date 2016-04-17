@@ -4,18 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemIn extends Model
+class DetailItemOut extends Model
 {
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-    'date', 'description',
+    'qty', 'item_id', 'item_out_id',
     ];
 
-    public function DetailItemIns(){
-    	return $this->hasMany('App\DetailItemIn');
+
+    public function item(){
+    	 return $this->belongsTo('App\Item')->withTrashed();
     }
 }

@@ -49,5 +49,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="{{ URL::asset('assets/js/scripts.js') }}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
+
+    @yield('custom_javascript')
 </body>
 </html>

@@ -27,8 +27,16 @@ class CustomerController extends Controller
      */
     public function index()
     {
-    	$customers = Customer::paginate(10);
-    	return view('customer.index', compact('customers'));
+        $search = \Request::get('search');
+        $getCategory = \Request::get('category');
+        if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
+            $customers = Customer::paginate(10);
+        }else{
+            $customers = Customer::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+
+        }
+        $category = array(''=>'kategori','name'=>'Nama','company_name'=>'Nama Perusahaan', 'address'=>'Alamat', 'email'=>'Email');
+        return view('customer.index', compact('customers','category'));
     }
 
      /**
@@ -69,8 +77,8 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
-    {
+     public function show($id)
+     {
         $customer = Customer::findOrFail($id);
 
         if (is_null($customer)){
@@ -116,8 +124,8 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
-    {
+     public function destroy($id)
+     {
         Customer::destroy($id);
         return redirect('customer')->with('message', 'Data berhasil dihapus!');;
     }

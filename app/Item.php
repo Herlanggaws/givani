@@ -18,12 +18,14 @@ class Item extends Model
     ];
     
 
-    public function type(){
-    	 return $this->belongsTo('App\Type')->withTrashed();
+    public function type()
+    {
+        return $this->belongsTo('App\Type')->withTrashed();
     }
 
-     /*get Type List*/
-    public static function getTypeList(){
+    /*get Type List*/
+    public static function getTypeList()
+    {
         $types = Type::all('id','name');
         $typeList = array();
 
@@ -33,5 +35,33 @@ class Item extends Model
             $typeList= array_add($typeList, $type->id, $type->name);
         }
         return $typeList;
+    }
+
+    public static function addStock($id, $qty){
+        $item = Item::where('id','like','%'.$id.'%')->first();
+        if (!is_null($item)){
+
+            $totalQty = $item->stock;
+            $totalQty = $totalQty + $qty;
+
+            $item->stock = $totalQty;
+
+            $item->save();
+        }
+
+    }
+
+    public static function decreaseStock($id, $qty){
+        $item = Item::where('id','like','%'.$id.'%')->first();
+        if (!is_null($item)){
+
+            $totalQty = $item->stock;
+            $totalQty = $totalQty - $qty;
+
+            $item->stock = $totalQty;
+
+            $item->save();
+        }
+
     }
 }

@@ -26,8 +26,8 @@ class TypeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+     public function __construct()
+     {
         $this->middleware('auth');
     }
 
@@ -38,8 +38,17 @@ class TypeController extends Controller
      */
     public function index()
     {
-    	$types = Type::paginate(10);
-    	return view('type.index', compact('types'));
+        $search = \Request::get('search');
+        $getCategory = \Request::get('category');
+
+        if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
+            $types = Type::paginate(10);
+        }else {
+            $types = Type::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+        }
+
+        $category = array(''=>'kategori','name'=>'Nama');
+        return view('type.index', compact('types', 'category'));
     }
 
     /**

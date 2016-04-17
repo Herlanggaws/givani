@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemIn extends Model
+class ItemOut extends Model
 {
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -15,7 +15,7 @@ class ItemIn extends Model
     'date', 'description',
     ];
 
-    public function DetailItemIns(){
-    	return $this->hasMany('App\DetailItemIn');
+    public function DetailItemOuts(){
+    	return $this->hasMany('App\DetailItemOut');
     }
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemInRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\ItemIn;
 use App\DetailItemIn;
+use App\Item;
 class ItemInController extends Controller
 {
      /**
@@ -33,23 +35,35 @@ class ItemInController extends Controller
 
     public function create()
     {
-        return view('itemin.create');
+        $items = Item::all();
+        return view('itemin.create', compact('items'));
     }
 
 
-    public function store(Request $request)
+    public function store(ItemInRequest $request)
     {
-        
+
         try {
-            $counter = $request->input('counter');;
+            $counter = $request->input('counter');
             ItemIn::create($request->all());
             $data = ItemIn::orderBy('created_at', 'desc')->first();    
             echo $counter;
             for ($i=0; $i<$counter; $i++) {
-                echo $i;
                 $qty = $request->input('qty'.strval($i));
                 $itemId = $request->input('item_id'.strval($i));
-                DetailItemIn::create(['qty'=>$qty, 'item_id'=>$itemId, 'item_in_id'=>$data->id]);
+
+                $isItemAvailable =  Item::where('id','like','%'.$itemId.'%')->first();
+                // Item::findOrFail($itemId);
+
+                if (is_null($isItemAvailable)){
+                    ItemIn::destroy($data->id);
+                    return redirect('itemin')->with('message', 'Data dengan kode barang: '.$itemId.', tidak ada');
+                }else {
+                    DetailItemIn::create(['qty'=>$qty, 'item_id'=>$itemId, 'item_in_id'=>$data->id]);
+                    Item::addStock($itemId, $qty);
+                }
+
+
             }
             return redirect('itemin')->with('message', 'Data berhasil dibuat!');
         } catch (\Illuminate\Database\QueryException $e) {
@@ -58,6 +72,32 @@ class ItemInController extends Controller
             return redirect('itemin')->with('message', 'Data dengan email tersebut sudah digunakan!');
         }
 
+    }
+
+
+       /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+       public function show($id)
+       {
+        $itemIn = ItemIn::findOrFail($id);
+        $DetailItemIns = $itemIn->DetailItemIns;
+
+        if (is_null($itemIn)){
+            return "ga ada";
+        }else {
+            return view('itemin.show', compact('itemIn','DetailItemIns'));  
+        }
+        
+    }
+
+    public function getGoodsDetail(){
+        $id = $_GET['id'];
+        $item = Item::findOrFail($id);
+        return $item->name;
     }
 
 }

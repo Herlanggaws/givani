@@ -8,29 +8,36 @@
 </div>
 @endif
 
-		<?php echo $users->render(); ?><br/>
-		<div class="breadcrumb">
-			<a href="{{ URL::to('user/create') }}">Buat Data</a>
-		</div>
-		<div class="table-responsive">
-			<table class="table table-bordered">
+<?php echo $users->render(); ?><br/>
+<div class="breadcrumb">
+	<a href="{{ URL::to('user/create') }}">Buat Data</a>
+</div>
+<div class="table-responsive">
+
+	@include('includes.search_form',['url'=>'user','link'=>'user']) 
+	
+
+	<div style="height: 60px;">
+
+	</div>
+	<table class="table table-bordered">
 
 
-				<thead>
-					<tr>
-						
-						<th>Name</th>
-						<th>Email</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($users as $user)
-					<tr>
-						
-						<td>{{ $user->name }}</td>
-						<td>{{ $user->email }}</td>
-						<td>
+		<thead>
+			<tr>
+
+				<th>Name</th>
+				<th>Email</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach($users as $user)
+			<tr>
+
+				<td>{{ $user->name }}</td>
+				<td>{{ $user->email }}</td>
+				<td>
 							<!-- <a href="{{url ('user', $user->id)}}"class="btn btn_5 btn-lg btn-link">Tampil </a>
 							|  -->
 							<a href="{{ URL::to('user/' . $user->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
@@ -50,4 +57,4 @@
 		</div>
 
 
-@stop
+		@stop

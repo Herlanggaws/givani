@@ -3,7 +3,7 @@
 <h3 class="blank1">Ubah Data: {{$user->name}}</h3>
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('user/') }}">Kembali</a></li>
 </ol>
 
 {!! Form::model($user, ['method'=> 'PATCH', 'action' => ['UserController@update', $user->id],'class'=>'form-horizontal']) !!}

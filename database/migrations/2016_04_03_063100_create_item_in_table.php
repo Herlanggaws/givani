@@ -27,6 +27,6 @@ class CreateItemInTable extends Migration
      */
     public function down()
     {
-        Schema::drop('item_in');
+        Schema::drop('item_ins');
     }
 }
