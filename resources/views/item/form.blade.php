@@ -39,7 +39,7 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('price', 'Harga',['class'=>'col-sm-2 control-label']) !!}
+	{!! Form::label('price', 'Harga Jual',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
 		{!! Form::number('price', null, ['class'=> 'form-control1', 'placeholder'=>'Harga', 'id'=>'price']) !!}

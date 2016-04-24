@@ -58,7 +58,10 @@
 			<option value=""></option>
 
 			@foreach($customer->prices as $price)
+			@if($price->sellable == 1)
 			<option value="{{$price->id}}">{{$price->item->name}} - Rp. {{$price->custom_price}}</option>
+			@endif
+			
 			@endforeach
 
 		</select>

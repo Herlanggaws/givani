@@ -56,9 +56,9 @@ class TransactionController extends Controller
         }
         else
         {
-           return view('transaction.create', compact('items'));
-       }
-   }
+         return view('transaction.create', compact('items'));
+     }
+ }
 
     /**
      * Display the specified resource.
@@ -82,11 +82,12 @@ class TransactionController extends Controller
             ItemOut::create(['date'=>'2016-04-01', 'description'=>'kode transaksi '.$data->id]);
             $dataOut = ItemOut::orderBy('created_at', 'desc')->first();
 
-
+            $total = 0;
             for ($i=0; $i<$counter; $i++) {
                 $qty = $request->input('qty'.strval($i));
                 $priceId = $request->input('price_id'.strval($i));
                 $subtotal = $request->input('subtotal'.strval($i));
+                $total = $total + $subtotal;
 
                 $price = Price::where('id','=',$priceId)->first();
 
@@ -103,7 +104,14 @@ class TransactionController extends Controller
                 }
 
 
+
+
             }
+
+            $updateTransaction = Transaction::where('id', '=', $data->id)->first();
+            $updateTransaction->total_price = $total;
+            $updateTransaction->save();
+
             return redirect('transaction')->with('message', 'Data berhasil dibuat!');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('transaction')->with('message', 'Data dengan email tersebut sudah digunakan!');

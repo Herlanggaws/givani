@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Buat Data Stock Barang</h3>
+<h3 class="blank1">Buat Data Barang Keluar</h3>
 
 <ol class="breadcrumb">
 	<li><a href="{{ URL::to('itemout/') }}">Kembali</a></li>

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Detail Pelanggan</h3>
+<h3 class="blank1">Detail Barang Keluar</h3>
 
 
 <ol class="breadcrumb">

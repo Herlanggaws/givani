@@ -93,9 +93,9 @@
 				<td>{{ $price->item->name }}</td>
 				@if($price->sellable == 1)
 				@if($price->is_custom == 1)
-				<td>{{ $price->custom_price }} (Custom)</td>
+				<td>Rp. {{ $price->custom_price }} (Custom)</td>
 				@else
-				<td>{{ $price->custom_price }}</td>
+				<td>Rp. {{ $price->custom_price }}</td>
 				@endif
 				
 				@else

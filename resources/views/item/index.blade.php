@@ -42,9 +42,9 @@
 			@foreach($items as $item)
 			<tr>
 				<td>{{ $item->name }}</td>
-				<td>{{ $item->production_price }}</td>
-				<td>{{ $item->minimum_price }}</td>
-				<td>{{ $item->price }}</td>
+				<td>Rp. {{ $item->production_price }}</td>
+				<td>Rp. {{ $item->minimum_price }}</td>
+				<td>Rp. {{ $item->price }}</td>
 				<td>{{ $item->stock }}</td>
 				<td>{{ $item->minimum_stock }}</td>
 				<td>{{ $item->type->name }}</td>

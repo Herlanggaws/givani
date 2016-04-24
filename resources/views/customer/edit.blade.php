@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Buat Data Pelanggan</h3>
+<h3 class="blank1">Ubah Data: {{$customer->name}}</h3>
 
 <ol class="breadcrumb">
 	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
