@@ -3,7 +3,7 @@
 <h3 class="blank1">Transaksi</h3>
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('itemin/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('transaction/') }}">Kembali</a></li>
 </ol>
 
 {!! Form::open(['url'=>'transaction','class'=>'form-horizontal']) !!}

@@ -12,7 +12,7 @@ class Price extends Model
      * @var array
      */
     protected $fillable = [
-    'item_id', 'customer_id', 'custom_price', 
+    'item_id', 'customer_id', 'custom_price',  'sellable',
     ];
 
     public function item()

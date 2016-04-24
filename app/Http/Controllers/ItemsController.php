@@ -70,7 +70,7 @@ class ItemsController extends Controller
             Item::create($request->all());
             $item = Item::orderBy('created_at', 'desc')->first();
             foreach ($customers as $customer) {
-                Price::create(['item_id'=>$item->id, 'customer_id'=>$customer->id, 'custom_price'=>$item->price]);
+                Price::create(['item_id'=>$item->id, 'customer_id'=>$customer->id, 'custom_price'=>$item->price ,'sellable'=>'1', 'is_custom'=>'0']);
             }
             return redirect('item')->with('message', 'Data berhasil dibuat!');;
         } catch (\Illuminate\Database\QueryException $e) {
@@ -106,8 +106,26 @@ class ItemsController extends Controller
         $item = Item::findOrFail($id);
 
         $item->update($request->all());
+        $prices = Price::where('item_id','=',$id)->orderBy('sellable')->get();
+        foreach ($prices as $price) {
 
-        return redirect('item')->with('message', 'Data berhasil dirubah!');;
+            if($price->custom_price < $item->minimum_price){
+                $price->sellable = 0;
+                $price->save();
+
+            }else{
+                $price->sellable = 1;
+                $price->save();                
+            }
+
+            if ($price->is_custom == '0'){
+                $price->custom_price = $item->price;
+                $price->save();
+            }
+
+        }
+
+        return redirect('item')->with('message', 'Data berhasil dirubah!');
     }
 
     /**

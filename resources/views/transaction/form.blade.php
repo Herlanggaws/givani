@@ -41,7 +41,8 @@
 			<tr>
 				<td>
 				</td>
-				<td></td>
+				<td>
+				</td>
 			</tr>
 
 		</tbody>
@@ -56,8 +57,8 @@
 		<select data-placeholder="Pilih Barang..." class="chosen-select" style="width:350px;" tabindex="2" name="item" id="itemId">
 			<option value=""></option>
 
-			@foreach($items as $item)
-			<option value="{{$item->id}}">{{$item->name}}</option>
+			@foreach($customer->prices as $price)
+			<option value="{{$price->id}}">{{$price->item->name}} - Rp. {{$price->custom_price}}</option>
 			@endforeach
 
 		</select>
@@ -115,7 +116,12 @@ function checkCounter(){
 }
 function addInput(divName, itemId, itemName, qty){
 	var newdiv = document.createElement('tr');
-	newdiv.innerHTML = "<td><input class='form-control1' id='focusedinput' type='hidden' name='item_id"+counter+"' value='"+itemId+"'>"+itemName+"</td><td><input class='form-control1' id='focusedinput' type='hidden' name='qty"+counter+"' value='"+qty+"'>"+qty+"</td>";
+
+	var tdItemName ="<td><input class='form-control1' id='focusedinput' type='hidden' name='price_id"+counter+"' value='"+itemId+"'>"+getName(itemName)+"</td>";
+	var tdQty ="<td><input class='form-control1' id='focusedinput' type='hidden' name='qty"+counter+"' value='"+qty+"'>"+qty+"</td>";
+	var tdPrice = "<td>"+getPrice(itemName)+"</td>";
+	var tdSubtotal = "<td><input class='form-control1' id='focusedinput' type='hidden' name='subtotal"+counter+"' value='"+getPrice(itemName)*qty+"'>"+getPrice(itemName)*qty+"</td>";
+	newdiv.innerHTML = tdItemName+tdQty+tdPrice+tdSubtotal;
 	document.getElementById(divName).appendChild(newdiv);
 	$("#getId"+counter).change(function(){
 
@@ -126,6 +132,19 @@ function addInput(divName, itemId, itemName, qty){
 	});
 	counter++;
 	updateCounter();
+}
+
+function getName(arrayString){
+	indexOfStrip = arrayString.indexOf("-");
+	name = arrayString.substring(0,indexOfStrip);
+	return name;
+
+}
+
+function getPrice(arrayString){
+	indexOfStrip = arrayString.indexOf(".")+1;
+	price = arrayString.substring(indexOfStrip, arrayString.length);
+	return price;
 }
 
 function removeInput(divaName){

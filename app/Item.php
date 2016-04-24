@@ -14,7 +14,7 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-    'name', 'production_price', 'minimum_price', 'stock','minimum_stock', 'type_id','price',    
+    'name', 'production_price', 'minimum_price', 'stock','minimum_stock', 'type_id','price',
     ];
     
 
@@ -38,7 +38,7 @@ class Item extends Model
     }
 
     public static function addStock($id, $qty){
-        $item = Item::where('id','like','%'.$id.'%')->first();
+        $item = Item::where('id','=',$id)->first();
         if (!is_null($item)){
 
             $totalQty = $item->stock;
@@ -52,7 +52,7 @@ class Item extends Model
     }
 
     public static function decreaseStock($id, $qty){
-        $item = Item::where('id','like','%'.$id.'%')->first();
+        $item = Item::where('id','=',$id)->first();
         if (!is_null($item)){
 
             $totalQty = $item->stock;

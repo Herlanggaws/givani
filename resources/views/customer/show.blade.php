@@ -91,9 +91,21 @@
 			@foreach($prices as $price)
 			<tr>
 				<td>{{ $price->item->name }}</td>
+				@if($price->sellable == 1)
+				@if($price->is_custom == 1)
+				<td>{{ $price->custom_price }} (Custom)</td>
+				@else
 				<td>{{ $price->custom_price }}</td>
+				@endif
+				
+				@else
+				<td>Data Harus Dirubah</td>
+				@endif
 				<td>
-					<a href="{{ URL::to('price/' . $price->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a>
+					@if(Auth::user()->role == 'admin')
+					<a href="{{ URL::to('price/' . $price->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a>	
+					@endif
+					
 				</td>
 			</tr>
 

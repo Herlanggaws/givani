@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Data Transaksi linknya dari pelanggan</h3>
+<h3 class="blank1">Transaksi</h3>
 
 @if (session('message'))
 <div class="alert alert-success">
@@ -8,31 +8,46 @@
 </div>
 @endif
 
-<?php echo $transactions->render(); ?><br/>
+<?php echo $customers->render(); ?><br/>
 <div class="breadcrumb">
-	<a href="{{ URL::to('transaction/create') }}">Buat Data</a>
 </div>
 <div class="table-responsive">
+	@include('includes.search_form',['url'=>'transaction','link'=>'transaction']) 
+	
+
+	<div style="height: 60px;">
+
+	</div>
 	<table class="table table-bordered">
+
+
 		<thead>
 			<tr>
-				<th>Kode Keluar</th>
-				<th>Tanggal</th>
-				<th>Deskripsi</th>
+				<th>Nama</th>
+				<th>Nama Perusahaan</th>
+				<th>Alamat</th>
+				<th>Email</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($transactions as $transaction)
+			@foreach($customers as $customer)
 			<tr>
-				<td>{{ $transaction->id }}</td>
-				<td>{{ $transaction->date }}</td>
-				<td>{{ $transaction->description }}</td>
+
+				<td>{{ $customer->name }}</td>
+				<td>{{ $customer->company_name }}</td>
+				<td>{{ $customer->address }}</td>
+				<td>{{ $customer->email }}</td>
 				<td>
-					<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Lihat</a>
+					<a href="{{url ('transaction', $customer->id)}}"class="btn btn-xs btn-link">Pilih</a>
 				</td>
 			</tr>
-			@endforeach					
+
+			@endforeach
+
+
+
+
 		</tbody>
 	</table>
 </div>

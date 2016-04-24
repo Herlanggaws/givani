@@ -21,6 +21,9 @@ class PriceController extends Controller
     	$price = Price::findOrFail($id);
 
     	$price->update($request->all());
+        $price->sellable = 1;
+        $price->is_custom = 1;
+        $price->save();
 
     	return redirect('customer')->with('message', 'Data berhasil dirubah!');;
     }

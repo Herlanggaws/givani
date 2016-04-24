@@ -70,7 +70,7 @@ class CustomerController extends Controller
             $customer = Customer::orderBy('created_at', 'desc')->first();    
             $items = Item::all();
             foreach ($items as $item) {
-                Price::create(['item_id'=>$item->id, 'customer_id'=>$customer->id, 'custom_price'=>$item->price]);
+                Price::create(['item_id'=>$item->id, 'customer_id'=>$customer->id, 'custom_price'=>$item->price,'sellable'=>'1']);
             }
             
             return redirect('customer')->with('message', 'Data berhasil dibuat!');;

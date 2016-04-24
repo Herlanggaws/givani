@@ -17,6 +17,22 @@
 <div class="form-group">
 	<label class="col-md-2 control-label"></label>
 	<div class="col-sm-8">
+		<div class="from-group registrationFormAlert" id="divCheckMinimumPrice">
+		</div>
+	</div>
+</div>
+
+<div class="form-group">
+	{!! Form::label('minimum_price', 'Harga Minimum',['class'=>'col-sm-2 control-label']) !!}
+
+	<div class="col-sm-8">
+		{!! Form::number('minimum_price', null, ['class'=> 'form-control1', 'id'=>'minimumPrice', 'placeholder'=>'Harga Minimum']) !!}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-md-2 control-label"></label>
+	<div class="col-sm-8">
 		<div class="from-group registrationFormAlert" id="divCheckPrice">
 		</div>
 	</div>
@@ -30,21 +46,7 @@
 	</div>
 </div>
 
-<div class="form-group">
-	<label class="col-md-2 control-label"></label>
-	<div class="col-sm-8">
-		<div class="from-group registrationFormAlert" id="divCheckMinimumPrice">
-		</div>
-	</div>
-</div>
 
-<div class="form-group">
-	{!! Form::label('minimum_price', 'Harga Minimum',['class'=>'col-sm-2 control-label']) !!}
-
-	<div class="col-sm-8">
-		{!! Form::number('minimum_price', null, ['class'=> 'form-control1', 'id'=>'minimumPrice', 'placeholder'=>'Harga Minimum']) !!}
-	</div>
-</div>
 
 <div class="form-group">
 	{!! Form::label('minimum_stock', 'Stock Minimum',['class'=>'col-sm-2 control-label']) !!}
@@ -77,17 +79,19 @@ $(document).ready(function () {
 	$("#productionPrice").keyup(typePrice);
 	setDisable();
 	typePrice();
+	checkMinimumPrice;
+	checkPrice();
 });
 
 function typePrice(){
 	var productionPrice = parseInt($("#productionPrice").val());
-	var price =parseInt($("#price").val());
+	var minimumPrice =parseInt($("#minimumPrice").val());
 	setDisable();
 	if (productionPrice > 0 ){
 		document.getElementById("price").disabled = false;
 		document.getElementById("minimumPrice").disabled = false;
 
-		if (productionPrice>price){
+		if (productionPrice>minimumPrice){
 			document.getElementById("price").value = "";
 			document.getElementById("minimumPrice").value = "";
 		}
@@ -101,11 +105,17 @@ function typePrice(){
 function checkMinimumPrice() {
 	var productionPrice = parseInt($("#productionPrice").val());
 	var minimumPrice = parseInt($("#minimumPrice").val());
+	var price =parseInt($("#price").val());
 
 	if (productionPrice > minimumPrice || isNaN(minimumPrice)){
 		$("#divCheckMinimumPrice").html("Harga Minimum Terlalu Rendah");
 		document.getElementById("mySubmit").disabled = true;
 	}else{
+		if(minimumPrice>price){
+			document.getElementById("price").value = "";
+			checkPrice();
+		}
+
 		$("#divCheckMinimumPrice").html("Harga Minimum Cocok");
 		document.getElementById("mySubmit").disabled = false;
 		
@@ -113,10 +123,9 @@ function checkMinimumPrice() {
 }
 
 function checkPrice() {
-	var productionPrice = parseInt($("#productionPrice").val());
+	var minimumPrice = parseInt($("#minimumPrice").val());
 	var price =parseInt($("#price").val());
-
-	if (productionPrice > price || isNaN(price)){
+	if (minimumPrice > price || isNaN(price)){
 		$("#divCheckPrice").html("Harga Terlalu Rendah");
 		document.getElementById("mySubmit").disabled = true;
 	}else{

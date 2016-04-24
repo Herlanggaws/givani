@@ -34,6 +34,7 @@
 
 $(document).ready(function () {
 	$("#custom_price").keyup(checkPrice);
+	checkPrice();
 });
 
 function checkPrice(){
@@ -45,8 +46,10 @@ function checkPrice(){
 	
 
 	if (price > customPrice || isNaN(customPrice)){
+		document.getElementById("mySubmit").disabled = true;
 		$("#divCheckPrice").html("Harga Terlalu Rendah");
 	}else {
+		document.getElementById("mySubmit").disabled = false;
 		$("#divCheckPrice").html("Harga Cocok");
 	}
 }

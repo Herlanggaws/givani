@@ -33,7 +33,7 @@
 
             <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i> <span>Transaksi</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="{{ URL::to('transaction/') }}">Transaksi Umum</a> </li>
+                    <li><a href="{{ URL::to('transaction/') }}">Transaksi</a> </li>
                 </ul>
             </li>  
             
