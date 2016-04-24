@@ -36,7 +36,11 @@ class ItemInController extends Controller
     public function create()
     {
         $items = Item::all();
-        return view('itemin.create', compact('items'));
+        if(count($items)<1){
+            return redirect()->action('ItemsController@index')->with('message', 'Anda belum memasukan data produk');
+        }else{
+            return view('itemin.create', compact('items'));
+        }
     }
 
 

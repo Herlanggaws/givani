@@ -48,7 +48,12 @@ class CustomerController extends Controller
      */
      public function create()
      {
-        return view('customer.create');
+        $items = Item::all();
+        if(count($items)<1){
+            return redirect()->action('ItemsController@index')->with('message', 'Anda belum memasukan data produk');
+        }else{
+            return view('customer.create');
+        }
     }
 
     /**
@@ -70,9 +75,9 @@ class CustomerController extends Controller
             
             return redirect('customer')->with('message', 'Data berhasil dibuat!');;
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+            return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');
         } catch (\PDOException $e) {
-            return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+            return redirect('customer')->with('message', 'Data dengan email tersebut sudah digunakan!');
         }
 
     }

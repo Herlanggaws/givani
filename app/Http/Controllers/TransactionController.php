@@ -16,25 +16,31 @@ class TransactionController extends Controller
      *
      * @return void
      */
-     public function __construct()
-     {
-     	$this->middleware('auth');
-     }
+    public function __construct()
+    {
+      $this->middleware('auth');
+  }
 
      /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
-    {
-    	$transactions = Transaction::paginate(10);
-    	return view('transaction.index', compact('transactions'));
-    }
+     public function index()
+     {
+         $transactions = Transaction::paginate(10);
+         return view('transaction.index', compact('transactions'));
+     }
 
-    public function create()
-    {
+     public function create()
+     {
         $items = Item::all();
-    	return view('transaction.create', compact('items'));
-    }
+        if(count($items)<1){
+            return redirect()->action('ItemsController@index')->with('message', 'Anda belum memasukan data produk');
+        }
+        else
+        {
+           return view('transaction.create', compact('items'));
+       }
+   }
 }

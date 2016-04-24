@@ -2,10 +2,10 @@
 
     <!--logo and iconic logo start-->
     <div class="logo">
-        <h1><a href="index.html">Givani <span>Admin</span></a></h1>
+        <h1><a href="{{ URL::to('/') }}">Givani <span>Admin</span></a></h1>
     </div>
     <div class="logo-icon text-center">
-        <a href="index.html"><i class="lnr lnr-home"></i> </a>
+        <a href="{{ URL::to('/') }}"><i class="lnr lnr-home"></i> </a>
     </div>
 
     <!--logo and iconic logo end-->
@@ -18,7 +18,6 @@
                 <ul class="sub-menu-list">
                     <li><a href="{{ URL::to('user/') }}">Pengguna</a> </li>
                     <li><a href="{{ URL::to('customer/') }}">Pelanggan</a> </li>
-                    <li><a href="#">Pembelian</a></li>
                 </ul>
             </li>
 
@@ -35,16 +34,14 @@
             <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i> <span>Transaksi</span></a>
                 <ul class="sub-menu-list">
                     <li><a href="{{ URL::to('transaction/') }}">Transaksi Umum</a> </li>
-                    <li><a href="#">Transaksi Khusus</a></li>
                 </ul>
             </li>  
             
-
-            <li class="menu-list">
-                <a href="#"><i class="lnr lnr-cog"></i>
-                    <span>Setting</span></a>
-                </li>
-            </ul>
+            <li><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Laporan</span></a>
+                <ul class="sub-menu-list">
+                    <li><a href="#">Laporan Transaksi</a></li>
+                </ul>
+            </li>
             <!--sidebar nav end-->
         </div>
     </div>

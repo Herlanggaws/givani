@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3 class="blank1">Pengguna</h3>
+<h3 class="blank1">Jenis Barang</h3>
 
 @if (session('message'))
 <div class="alert alert-success">

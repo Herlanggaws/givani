@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Item;
 use App\Type;
+use App\Customer;
+use App\Price;
 use App\Http\Requests\ItemRequest;
 use Request;
 
@@ -49,20 +51,32 @@ class ItemsController extends Controller
 
     public function create()
     {
+
+
     	$types = Type::all('id','name');
         $typeList = Item::getTypeList();
-        return view('item.create', compact('typeList'));
+
+        if (count($typeList)<2){
+            return redirect()->action('TypeController@index')->with('message', 'Anda belum memasukan data jenis produk');
+        }else{
+            return view('item.create', compact('typeList'));
+        }
     }
 
     public function store(ItemRequest $request)
     {
         try {
+            $customers = Customer::all();
             Item::create($request->all());
+            $item = Item::orderBy('created_at', 'desc')->first();
+            foreach ($customers as $customer) {
+                Price::create(['item_id'=>$item->id, 'customer_id'=>$customer->id, 'custom_price'=>$item->price]);
+            }
             return redirect('item')->with('message', 'Data berhasil dibuat!');;
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('item')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+            return redirect('item')->with('message', 'Data dengan nama tersebut sudah digunakan!');
         } catch (\PDOException $e) {
-            return redirect('item')->with('message', 'Data dengan email tersebut sudah digunakan!');;
+            return redirect('item')->with('message', 'Data dengan nama tersebut sudah digunakan!');
         }
 
     }

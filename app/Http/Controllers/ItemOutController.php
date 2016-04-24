@@ -37,43 +37,47 @@ class ItemOutController extends Controller
     public function create()
     {
         $items = Item::all();
-    	return view('itemout.create', compact('items'));
-    }
+        if(count($items)<1){
+            return redirect()->action('ItemsController@index')->with('message', 'Anda belum memasukan data produk');
+        }else{
+           return view('itemout.create', compact('items'));
+       }
+   }
 
 
-    public function store(Request $request)
-    {
+   public function store(Request $request)
+   {
 
-    	try {
-    		$counter = $request->input('counter');;
-    		ItemOut::create($request->all());
-    		$data = ItemOut::orderBy('created_at', 'desc')->first();    
-    		echo $counter;
-    		for ($i=0; $i<$counter; $i++) {
-    			$qty = $request->input('qty'.strval($i));
-    			$itemId = $request->input('item_id'.strval($i));
+       try {
+          $counter = $request->input('counter');;
+          ItemOut::create($request->all());
+          $data = ItemOut::orderBy('created_at', 'desc')->first();    
+          echo $counter;
+          for ($i=0; $i<$counter; $i++) {
+             $qty = $request->input('qty'.strval($i));
+             $itemId = $request->input('item_id'.strval($i));
 
-    			$isItemAvailable =  Item::where('id','like','%'.$itemId.'%')->first();
+             $isItemAvailable =  Item::where('id','like','%'.$itemId.'%')->first();
                 // Item::findOrFail($itemId);
 
-    			if (is_null($isItemAvailable)){
-    				ItemOut::destroy($data->id);
-    				return redirect('itemout')->with('message', 'Data dengan kode barang: '.$itemId.', tidak ada');
-    			}else {
-    				DetailItemOut::create(['qty'=>$qty, 'item_id'=>$itemId, 'item_out_id'=>$data->id]);
-    				Item::decreaseStock($itemId, $qty);
-    			}
+             if (is_null($isItemAvailable)){
+                ItemOut::destroy($data->id);
+                return redirect('itemout')->with('message', 'Data dengan kode barang: '.$itemId.', tidak ada');
+            }else {
+                DetailItemOut::create(['qty'=>$qty, 'item_id'=>$itemId, 'item_out_id'=>$data->id]);
+                Item::decreaseStock($itemId, $qty);
+            }
 
 
-    		}
-    		return redirect('itemout')->with('message', 'Data berhasil dibuat!');
-    	} catch (\Illuminate\Database\QueryException $e) {
-    		return redirect('itemout')->with('message', 'Data dengan email tersebut sudah digunakan!');
-    	} catch (\PDOException $e) {
-    		return redirect('itemout')->with('message', 'Data dengan email tersebut sudah digunakan!');
-    	}
+        }
+        return redirect('itemout')->with('message', 'Data berhasil dibuat!');
+    } catch (\Illuminate\Database\QueryException $e) {
+      return redirect('itemout')->with('message', 'Data dengan email tersebut sudah digunakan!');
+  } catch (\PDOException $e) {
+      return redirect('itemout')->with('message', 'Data dengan email tersebut sudah digunakan!');
+  }
 
-    }
+}
 
 
        /**
