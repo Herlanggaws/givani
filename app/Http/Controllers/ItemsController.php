@@ -38,9 +38,9 @@ class ItemsController extends Controller
         $search = \Request::get('search');
         $getCategory = \Request::get('category');
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
-            $items = Item::paginate(10);
+            $items = Item::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+            $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(10);
         }
         
         

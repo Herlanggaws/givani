@@ -4,7 +4,7 @@
 
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('customer/') }}">Data Pelanggan</a></li>
 </ol>
 
 <div class="table-responsive">

@@ -3,7 +3,7 @@
 <h3 class="blank1">Ubah Data: {{$item->name}}</h3>
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('item/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('item/') }}">Data Stock Barang</a></li>
 </ol>
 
 {!! Form::model($item, ['method'=> 'PATCH', 'action' => ['ItemsController@update', $item->id],'class'=>'form-horizontal']) !!}

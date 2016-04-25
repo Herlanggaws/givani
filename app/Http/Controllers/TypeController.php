@@ -42,7 +42,7 @@ class TypeController extends Controller
         $getCategory = \Request::get('category');
 
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
-            $types = Type::paginate(10);
+            $types = Type::orderBy('id', 'DESC')->paginate(10);
         }else {
             $types = Type::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
         }

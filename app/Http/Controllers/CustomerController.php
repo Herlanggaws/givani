@@ -32,9 +32,9 @@ class CustomerController extends Controller
         $search = \Request::get('search');
         $getCategory = \Request::get('category');
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
-            $customers = Customer::paginate(10);
+            $customers = Customer::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $customers = Customer::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+            $customers = Customer::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory, 'DESC')->paginate(10);
 
         }
         $category = array(''=>'kategori','name'=>'Nama','company_name'=>'Nama Perusahaan', 'address'=>'Alamat', 'email'=>'Email');

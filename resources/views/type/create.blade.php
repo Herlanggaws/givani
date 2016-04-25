@@ -3,7 +3,7 @@
 <h3 class="blank1">Buat Data Jenis Barang</h3>
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('type/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('type/') }}">Data Jenis Barang</a></li>
 </ol>
 
 {!! Form::open(['url'=>'type','class'=>'form-horizontal']) !!}

@@ -73,12 +73,13 @@
 	<label class="col-md-2 control-label"></label>
 	<div class="col-sm-8">
 		<input type="button"class="btn-warning btn" value="Tambah Barang" onClick="getItem('itemId', 'qty', 'dynamicInput');">
+		<input type="button"class="btn-danger btn" value="Hapus Barang" onClick="removeInput('dynamicInput');">
 	</div>
 </div>
 
 <div>
 	
-	<input type="button"class="btn-danger btn" value="Hapus Barang" onClick="removeInput('dynamicInput');">
+	
 	{!! Form::submit($buttonName,['class'=>'btn-success btn', 'id'=>'mySubmit']) !!}
 </div>
 

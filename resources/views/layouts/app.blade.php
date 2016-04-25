@@ -32,6 +32,7 @@
             <!-- //header-ends -->
             <div id="page-wrapper">
                 <div class="graphs">
+                    @yield('switch')
                     <div class="xs tabls">
                         <div class="bs-example4" data-example-id="contextual-table">
                             @yield('content')

@@ -28,9 +28,9 @@ class UserController extends Controller
         $getCategory = \Request::get('category');
         
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
-            $users = User::paginate(10);
+            $users = User::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $users = User::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+            $users = User::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(10);
         }
 
         $category = array(''=>'kategori','name'=>'name','email'=>'email');

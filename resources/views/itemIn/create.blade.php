@@ -3,7 +3,7 @@
 <h3 class="blank1">Buat Data Barang Masuk</h3>
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('itemin/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('itemin/') }}">Data Barang Masuk</a></li>
 </ol>
 
 {!! Form::open(['url'=>'itemin','class'=>'form-horizontal']) !!}

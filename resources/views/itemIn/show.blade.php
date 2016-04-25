@@ -4,7 +4,7 @@
 
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('itemin/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('itemin/') }}">Data Barang Masuk</a></li>
 </ol>
 
 <div class="table-responsive">

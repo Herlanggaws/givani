@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('switch')
 <div class="switches">
     <div class="col-4">
         <div class="col-md-4 switch-right">
@@ -149,6 +149,49 @@
 </div>
 </div>
 <div class="clearfix"></div>
+
+@endsection
+
+@section('content')
+<div class="table-responsive">
+
+
+    <div style="height: 60px;">
+
+    </div>
+
+    <table class="table table-bordered">
+
+
+        <thead>
+            <tr>
+                <th>Nama Barang</th>
+                <th>Stock</th>
+                <th>Minimum Stock</th>
+                <th>Jenis Barang</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($items as $item)
+            <tr>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->stock }}</td>
+                <td>{{ $item->minimum_stock }}</td>
+                <td>{{ $item->type->name }}</td>
+                <td>
+                    <a href="{{ URL::to('itemin/create') }}" class="btn btn-xs btn-link">Tambah Barang </a>
+                </td>
+            </tr>
+
+            @endforeach
+
+
+
+
+        </tbody>
+    </table>
+</div>
 
 @endsection
 

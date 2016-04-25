@@ -29,6 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 @include('includes.notification')    
                 <!--notification menu end -->
             </div>
+
             <!-- //header-ends -->
             <div id="page-wrapper">
                 <div class="graphs">

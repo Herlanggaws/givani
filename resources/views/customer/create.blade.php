@@ -3,7 +3,7 @@
 <h3 class="blank1">Buat Data Pelanggan</h3>
 
 <ol class="breadcrumb">
-	<li><a href="{{ URL::to('customer/') }}">Kembali</a></li>
+	<li><a href="{{ URL::to('customer/') }}">Data Pelanggan</a></li>
 </ol>
 
 {!! Form::open(['url'=>'customer','class'=>'form-horizontal']) !!}
