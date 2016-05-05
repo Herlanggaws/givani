@@ -21,8 +21,6 @@
 
 	</div>
 	<table class="table table-bordered">
-
-
 		<thead>
 			<tr>
 
@@ -38,23 +36,38 @@
 				<td>{{ $user->name }}</td>
 				<td>{{ $user->email }}</td>
 				<td>
-							<!-- <a href="{{url ('user', $user->id)}}"class="btn btn_5 btn-lg btn-link">Tampil </a>
-							|  -->
-							<a href="{{ URL::to('user/' . $user->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
-							{!! Form::model($user, ['method'=> 'DELETE', 'action' => ['UserController@destroy', $user->id],'class'=>'btn btn-xs btn-link']) !!}
-							{!! Form::submit('Hapus',['class'=>'btn btn-xs btn-link']) !!}
-							{!! Form::close() !!}
-						</td>
-					</tr>
-					
-					@endforeach
+					@if(Auth::user()->role == 'admin')
+					<a href="{{ URL::to('user/' . $user->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
+					{!! Form::model($user, ['method'=> 'DELETE', 'action' => ['UserController@destroy', $user->id],'class'=>'btn btn-xs btn-link', 'onsubmit' => 'return ConfirmDelete()']) !!}
+					{!! Form::submit('Hapus',['class'=>'btn btn-xs btn-link']) !!}
+					{!! Form::close() !!}
+					@endif
+				</td>
+			</tr>
 
-					
-
-					
-				</tbody>
-			</table>
-		</div>
+			@endforeach
 
 
-		@stop
+
+
+		</tbody>
+	</table>
+</div>
+
+
+@stop
+
+
+@section('custom_javascript')
+
+<script type="text/javascript">
+function ConfirmDelete()
+{
+	var x = confirm("Apa anda yakin akan menghapus data ini?");
+	if (x)
+		return true;
+	else
+		return false;
+}
+</script>
+@stop

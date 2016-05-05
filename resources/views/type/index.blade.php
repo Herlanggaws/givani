@@ -31,20 +31,32 @@
 
 				<td>{{ $type->name }}</td>
 				<td>
+					@if(Auth::user()->role == 'admin')
 					<a href="{{ URL::to('type/' . $type->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
-					{!! Form::model($type, ['method'=> 'DELETE', 'action' => ['TypeController@destroy', $type->id],'class'=>'btn btn-xs btn-link']) !!}
+					{!! Form::model($type, ['method'=> 'DELETE', 'action' => ['TypeController@destroy', $type->id],'class'=>'btn btn-xs btn-link', 'onsubmit' => 'return ConfirmDelete()']) !!}
 					{!! Form::submit('Hapus',['class'=>'btn btn-xs btn-link']) !!}
 					{!! Form::close() !!}
+					@endif
 				</td>
 			</tr>
 
 			@endforeach
-
-
 		</tbody>
 	</table>
 </div>
+@stop
 
 
+@section('custom_javascript')
 
+<script type="text/javascript">
+function ConfirmDelete()
+{
+	var x = confirm("Apa anda yakin akan menghapus data ini?");
+	if (x)
+		return true;
+	else
+		return false;
+}
+</script>
 @stop

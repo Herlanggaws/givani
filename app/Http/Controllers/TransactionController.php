@@ -13,6 +13,7 @@ use App\DetailTransaction;
 use App\Price;
 use App\ItemOut;
 use App\DetailItemOut;
+use Response;
 
 class TransactionController extends Controller
 {
@@ -23,8 +24,8 @@ class TransactionController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('auth');
-  }
+        $this->middleware('auth');
+    }
 
      /**
      * Display a listing of the resource.
@@ -33,32 +34,33 @@ class TransactionController extends Controller
      */
      public function index()
      {
+
         $search = \Request::get('search');
         $getCategory = \Request::get('category');
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == "")
         {
-            $customers = Customer::paginate(10);
+            $transactions = Transaction::orderBy('id', 'DESC')->paginate(10);
         }
         else
         {
-            $customers = Customer::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(10);
+            $transactions = Transaction::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(10);
         }
-        $category = array(''=>'kategori','name'=>'Nama','company_name'=>'Nama Perusahaan', 'address'=>'Alamat', 'email'=>'Email');
-        return view('transaction.index', compact('customers','category'));
+        $category = array(''=>'kategori','id'=>'Kode Transaksi');
+        return view('transaction.index', compact('transactions','category'));
     }
 
     public function create()
     {
-        $items = Item::all();
-        if(count($items)<1)
+        $id = \Request::get('id');
+        try
         {
-            return redirect()->action('ItemsController@index')->with('message', 'Anda belum memasukan data produk');
+            $customer = Customer::findOrFail($id);
+            return view('transaction.create', compact('customer'));
         }
-        else
-        {
-         return view('transaction.create', compact('items'));
-     }
- }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect('transaction')->with('message', 'Data dengan kode transaksi tersebut tidak ditemukan!');
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -68,8 +70,15 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $customer = Customer::findOrFail($id);
-        return view('transaction.show', compact('customer'));
+        try
+        {
+            $transaction = Transaction::findOrFail($id);
+            return view('transaction.show', compact('transaction'));
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect('transaction')->with('message', 'Data dengan kode transaksi tersebut tidak ditemukan!');
+        }
+        
     }
 
     public function store(Request $request)
@@ -114,10 +123,11 @@ class TransactionController extends Controller
 
             return redirect('transaction')->with('message', 'Data berhasil dibuat!');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('transaction')->with('message', 'Data dengan email tersebut sudah digunakan!');
+            return redirect('transaction')->with('message', 'Data dengan transaksi tersebut sudah digunakan!');
         } catch (\PDOException $e) {
-            return redirect('transaction')->with('message', 'Data dengan email tersebut sudah digunakan!');
+            return redirect('transaction')->with('message', 'Data dengan transaksi tersebut sudah digunakan!');
         }
 
     }
+
 }

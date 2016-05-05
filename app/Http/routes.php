@@ -33,6 +33,8 @@ Route::group(['middleware' => ['web']], function () {
 		return 'Hello World!';
 	});
 	Route::get('itemin/get_goods_detail','IteminController@getGoodsDetail');
+	Route::get('itemin/report','IteminController@report');
+	Route::get('itemin/setReport','IteminController@setReport');
 	Route::resource('user','UserController');
 	Route::resource('type','TypeController');
 	Route::resource('customer','CustomerController');

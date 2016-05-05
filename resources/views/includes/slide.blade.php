@@ -18,6 +18,7 @@
                 <ul class="sub-menu-list">
                     <li><a href="{{ URL::to('user/') }}">Pengguna</a> </li>
                     <li><a href="{{ URL::to('customer/') }}">Pelanggan</a> </li>
+                    <li><a href="{{ URL::to('transaction/') }}">Transaksi</a> </li>
                 </ul>
             </li>
 
@@ -33,7 +34,7 @@
 
             <li class="menu-list"><a href="#"><i class="lnr lnr-select"></i> <span>Transaksi</span></a>
                 <ul class="sub-menu-list">
-                    <li><a href="{{ URL::to('transaction/') }}">Transaksi</a> </li>
+                    <li><a href="{{ URL::to('customer?page=transaction') }}">Transaksi</a> </li>
                 </ul>
             </li>  
             

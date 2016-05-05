@@ -8,7 +8,7 @@
 </div>
 @endif
 
-<?php echo $transactions->render(); ?><br/>
+<?php echo $customers->render(); ?><br/>
 <div class="breadcrumb">
 </div>
 <div class="table-responsive">
@@ -23,17 +23,23 @@
 
 		<thead>
 			<tr>
-				<th>Kode Transaksi</th>
+				<th>Nama</th>
+				<th>Nama Perusahaan</th>
+				<th>Alamat</th>
+				<th>Email</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($transactions as $transaction)
+			@foreach($customers as $customer)
 			<tr>
 
-				<td>{{ $transaction->id }}</td>
+				<td>{{ $customer->name }}</td>
+				<td>{{ $customer->company_name }}</td>
+				<td>{{ $customer->address }}</td>
+				<td>{{ $customer->email }}</td>
 				<td>
-					<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Pilih</a>
+					<a href="{{ URL::to('transaction/create?id='.$customer->id) }}">Pilih</a>
 				</td>
 			</tr>
 

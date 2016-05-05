@@ -29,6 +29,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $page = \Request::get('page');
         $search = \Request::get('search');
         $getCategory = \Request::get('category');
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
@@ -38,7 +39,12 @@ class CustomerController extends Controller
 
         }
         $category = array(''=>'kategori','name'=>'Nama','company_name'=>'Nama Perusahaan', 'address'=>'Alamat', 'email'=>'Email');
-        return view('customer.index', compact('customers','category'));
+
+        if ($page == "transaction"){
+            return view('transaction.customer', compact('customers','category'));
+        }else{
+            return view('customer.index', compact('customers','category'));
+        }
     }
 
      /**

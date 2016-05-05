@@ -14,4 +14,9 @@ class Transaction extends Model
     protected $fillable = [
     'date', 'total_price',
     ];
+
+
+    public function DetailTransaction(){
+    	return $this->hasMany('App\DetailTransaction');
+    }
 }

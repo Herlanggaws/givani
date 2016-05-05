@@ -14,4 +14,8 @@ class DetailTransaction extends Model
     protected $fillable = [
     'transaction_id','qty', 'price_id', 'subtotal',
     ];
+
+    public function Price(){
+    	 return $this->belongsTo('App\Price');
+    }
 }

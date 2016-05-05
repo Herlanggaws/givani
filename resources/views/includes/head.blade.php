@@ -46,5 +46,7 @@ new WOW().init();
 <script>
 $(function() {
 	$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+	$( "#from" ).datepicker({ dateFormat: 'yy-mm-dd' });
+	$( "#to" ).datepicker({ dateFormat: 'yy-mm-dd' });
 });
 </script>

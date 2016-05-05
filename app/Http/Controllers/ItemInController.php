@@ -29,8 +29,20 @@ class ItemInController extends Controller
      */
     public function index()
     {
-    	$itemIns = ItemIn::paginate(10);
-    	return view('itemin.index', compact('itemIns'));
+        $search = \Request::get('search');
+        $getCategory = \Request::get('category');
+        if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == "")
+        {
+            $itemIns = ItemIn::orderBy('id', 'DESC')->paginate(10);
+        }
+        else
+        {
+            $itemIns = ItemIn::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(10);   
+        }
+
+        $category = array(''=>'kategori','id'=>'Kode Masuk');
+
+        return view('itemin.index', compact('itemIns', 'category'));
     }
 
     public function create()
@@ -102,6 +114,19 @@ class ItemInController extends Controller
         $id = $_GET['id'];
         $item = Item::findOrFail($id);
         return $item->name;
+    }
+
+    public function setReport(){
+        return view('itemin.set_report');
+        
+    }
+
+    public function report(){
+        $from = \Request::get('from');
+        $to = \Request::get('to');
+        $itemIns = ItemIn::whereDate('date', '>=', date($from))->whereDate('date', '<=', date($to))->orderBy('id', 'DESC')->paginate(10);
+
+        return view('itemin.report', compact('itemIns', 'from', 'to'));  
     }
 
 }

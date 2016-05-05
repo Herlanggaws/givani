@@ -17,8 +17,6 @@
 
 <div class="table-responsive">
 	@include('includes.search_form',['url'=>'item','link'=>'item']) 
-	
-
 	<div style="height: 60px;">
 
 	</div>
@@ -50,10 +48,12 @@
 				<td>{{ $item->type->name }}</td>
 
 				<td>
-					<a href="{{ URL::to('item/' . $item->id . '/edit') }}"class="btn btn-xs btn-link">Edit </a> | 
-					{!! Form::model($item, ['method'=> 'DELETE', 'action' => ['ItemsController@destroy', $item->id],'class'=>'btn btn-xs btn-link']) !!}
+					@if(Auth::user()->role == 'admin')
+					<a href="{{ URL::to('item/' . $item->id . '/edit') }}"class="btn btn-xs btn-link" data-confirm="are">Edit </a> | 
+					{!! Form::model($item, ['method'=> 'DELETE', 'action' => ['ItemsController@destroy', $item->id],'class'=>'btn btn-xs btn-link', 'onsubmit' => 'return ConfirmDelete()']) !!}
 					{!! Form::submit('Hapus',['class'=>'btn btn-xs btn-link']) !!}
 					{!! Form::close() !!}
+					@endif
 				</td>
 			</tr>
 
@@ -68,6 +68,19 @@
 
 <div style="height: 60px;" id="txtHint">
 
-	</div>
+</div>
+@stop
 
+@section('custom_javascript')
+
+<script type="text/javascript">
+function ConfirmDelete()
+{
+	var x = confirm("Apa anda yakin akan menghapus data ini?");
+	if (x)
+		return true;
+	else
+		return false;
+}
+</script>
 @stop
