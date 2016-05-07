@@ -1,4 +1,4 @@
-{!! Form::open(['method'=>'GET','url'=>$url,null,'class'=>'form-horizontal'])  !!}
+{!! Form::open(['method'=>'GET','url'=>$url,null,'class'=>'form-horizontal', 'target'=>'_blank'])  !!}
 <div class="form-group">
 	{!! Form::label('date', 'Tanggal Awal',['class'=>'col-sm-2 control-label']) !!}
 

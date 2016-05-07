@@ -41,9 +41,9 @@
 			@foreach($transaction->detailTransaction as $detailTransaction)
 			<tr>
 				<td>{{ $detailTransaction->price->item->name }}</td>
-				<td>Rp. {{ $detailTransaction->price->custom_price }}</td>
+				<td>Rp. {{ number_format($detailTransaction->price->custom_price,2) }}</td>
 				<td>{{ $detailTransaction->qty }}</td>
-				<td>Rp. {{ $detailTransaction->subtotal }}</td>
+				<td>Rp. {{ number_format($detailTransaction->subtotal,2) }}</td>
 			</tr>
 
 			@endforeach

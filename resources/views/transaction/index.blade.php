@@ -24,6 +24,7 @@
 		<thead>
 			<tr>
 				<th>Kode Transaksi</th>
+				<th>Total</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -32,8 +33,9 @@
 			<tr>
 
 				<td>{{ $transaction->id }}</td>
+				<td>Rp. {{ number_format($transaction->total_price,2) }}</td>
 				<td>
-					<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Pilih</a>
+					<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Lihat Detail</a>
 				</td>
 			</tr>
 

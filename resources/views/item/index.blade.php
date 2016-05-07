@@ -40,9 +40,9 @@
 			@foreach($items as $item)
 			<tr>
 				<td>{{ $item->name }}</td>
-				<td>Rp. {{ $item->production_price }}</td>
-				<td>Rp. {{ $item->minimum_price }}</td>
-				<td>Rp. {{ $item->price }}</td>
+				<td>Rp. {{ number_format($item->production_price,2) }}</td>
+				<td>Rp. {{ number_format($item->minimum_price,2) }}</td>
+				<td>Rp. {{ number_format($item->price,2) }}</td>
 				<td>{{ $item->stock }}</td>
 				<td>{{ $item->minimum_stock }}</td>
 				<td>{{ $item->type->name }}</td>

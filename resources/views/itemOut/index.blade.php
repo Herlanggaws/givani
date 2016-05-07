@@ -10,7 +10,8 @@
 
 <?php echo $itemOuts->render(); ?><br/>
 <div class="breadcrumb">
-	<a href="{{ URL::to('itemout/create') }}">Buat Data</a>
+	<a href="{{ URL::to('itemout/create') }}">Buat Data</a> | 
+	<a href="{{ URL::to('itemout/setReport') }}">Buat Laporan</a>
 </div>
 <div class="table-responsive">
 	@include('includes.search_form',['url'=>'itemout','link'=>'itemout']) 
