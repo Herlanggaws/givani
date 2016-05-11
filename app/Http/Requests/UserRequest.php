@@ -25,7 +25,6 @@ class UserRequest extends Request
     {
         return [
         'name' => 'required|min:3',
-        'password' => 'required|min:4',
         'email' => 'required|email'
         ];
     }

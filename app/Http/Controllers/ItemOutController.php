@@ -95,7 +95,7 @@ class ItemOutController extends Controller
   public function report(){
     $from = \Request::get('from');
     $to = \Request::get('to');
-    $itemOuts = ItemOut::whereDate('date', '>=', date($from))->whereDate('date', '<=', date($to))->orderBy('id', 'DESC')->paginate(10);
+    $itemOuts = ItemOut::whereDate('date', '>=', date($from))->whereDate('date', '<=', date($to))->orderBy('id', 'DESC');
 
     return view('itemout.report', compact('itemOuts', 'from', 'to'));  
   }

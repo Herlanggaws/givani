@@ -139,4 +139,12 @@ class ItemsController extends Controller
         Item::destroy($id);
         return redirect('item')->with('message', 'Data berhasil dihapus!');;
     }
+
+     public function report(){
+        $from = \Request::get('from');
+        $to = \Request::get('to');
+        $items = Item::all();
+
+        return view('item.report', compact('items', 'from', 'to'));  
+    }
 }

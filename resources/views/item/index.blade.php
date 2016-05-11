@@ -11,7 +11,8 @@
 
 <?php echo $items->render(); ?><br/>
 <div class="breadcrumb">
-	<a href="{{ URL::to('item/create') }}">Buat Data</a>
+	<a href="{{ URL::to('item/create') }}">Buat Data</a> |
+	<a href="{{ URL::to('item/report') }}" target="_blank">Buat Laporan</a>
 </div>
 
 

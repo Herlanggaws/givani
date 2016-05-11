@@ -56,7 +56,7 @@
                     </div>
                     <input type="submit" value="Login to your account">
                     <div class="form-group">
-                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a> | <a class="btn btn-link" href="{{ url('/register') }}">Registrasi</a><br>
+                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a> 
                         <div class="col-md-6 col-md-offset-4">
 
 

@@ -14,28 +14,11 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('password', 'Passwrod',['class'=>'col-sm-2 control-label']) !!}
+	{!! Form::label('role', 'Peran',['class'=>'col-sm-2 control-label']) !!}
 	<div class="col-sm-8">
-		{!! Form::password('password', array('class'=> 'form-control1', 'id'=>'txtNewPassword', 'placeholder'=>'Password')) !!}
+		{!!  Form::select('role', array('admin' => 'Admin', 'pegawai' => 'Pegawai'),null, array('class'=>'form-control1', 'id'=>'selector1'))!!}
 	</div>
 </div>
-
-<div class="form-group">
-	<label class="col-md-2 control-label"></label>
-	<div class="col-sm-8">
-		<div class="from-group registrationFormAlert" id="divCheckPasswordMatch">
-		</div>
-	</div>
-</div>
-
-<div class="form-group">
-	{!! Form::label('password', 'Konfirmasi Passwrod',['class'=>'col-sm-2 control-label']) !!}
-	<div class="col-sm-8">
-		{!! Form::password('password', array('class'=> 'form-control1', 'id'=>'txtConfirmPassword', 'placeholder'=>'Password' , 'onChange'=>'checkPasswordMatch();')) !!}
-	</div>
-</div>
-
-
 
 
 <div class="form-group">
@@ -46,23 +29,5 @@
 </div>
 
 @section('custom_javascript')
-<script type="text/javascript">
-$(document).ready(function () {
-	$("#txtConfirmPassword").keyup(checkPasswordMatch);
-	document.getElementById("mySubmit").disabled = true;
-});
 
-function checkPasswordMatch() {
-	var password = $("#txtNewPassword").val();
-	var confirmPassword = $("#txtConfirmPassword").val();
-
-	if (password != confirmPassword){
-		$("#divCheckPasswordMatch").html("Passwords do not match!");
-		document.getElementById("mySubmit").disabled = true;
-	}else{
-		$("#divCheckPasswordMatch").html("Passwords match.");
-		document.getElementById("mySubmit").disabled = false;
-	}
-}
-</script>
 @stop

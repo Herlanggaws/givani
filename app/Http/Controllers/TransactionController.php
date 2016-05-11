@@ -130,4 +130,30 @@ class TransactionController extends Controller
 
     }
 
+    public function getBill($id){
+        try
+        {
+            $transaction = Transaction::findOrFail($id);
+            return view('transaction.bill', compact('transaction'));
+        }
+        catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect('transaction')->with('message', 'Data dengan kode transaksi tersebut tidak ditemukan!');
+        }
+    }
+
+
+    public function setReport(){
+        return view('transaction.set_report');
+        
+    }
+
+    public function report(){
+        $from = \Request::get('from');
+        $to = \Request::get('to');
+        $transactions = Transaction::whereDate('date', '>=', date($from))->whereDate('date', '<=', date($to))->orderBy('id', 'DESC');
+
+        return view('transaction.report', compact('transactions', 'from', 'to'));  
+    }
+
+
 }

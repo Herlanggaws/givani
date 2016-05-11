@@ -38,11 +38,7 @@
                 </ul>
             </li>  
             
-            <li><a href="forms.html"><i class="lnr lnr-spell-check"></i> <span>Laporan</span></a>
-                <ul class="sub-menu-list">
-                    <li><a href="#">Laporan Transaksi</a></li>
-                </ul>
-            </li>
+            
             <!--sidebar nav end-->
         </div>
     </div>

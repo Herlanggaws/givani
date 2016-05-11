@@ -19,4 +19,9 @@ class Price extends Model
     {
         return $this->belongsTo('App\Item')->withTrashed();
     }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer')->withTrashed();
+    }
 }

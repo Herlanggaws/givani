@@ -10,6 +10,7 @@
 
 <?php echo $transactions->render(); ?><br/>
 <div class="breadcrumb">
+	<a href="{{ URL::to('transaction/setReport') }}">Buat Laporan</a>
 </div>
 <div class="table-responsive">
 	@include('includes.search_form',['url'=>'transaction','link'=>'transaction']) 
@@ -24,6 +25,8 @@
 		<thead>
 			<tr>
 				<th>Kode Transaksi</th>
+				<th>Tanggal</th>
+				<th>Atas Nama</th>
 				<th>Total</th>
 				<th></th>
 			</tr>
@@ -33,9 +36,11 @@
 			<tr>
 
 				<td>{{ $transaction->id }}</td>
+				<td>{{ $transaction->date }}</td>
+				<td>{{$transaction->detailTransaction->first()->price->customer->name}}</td>
 				<td>Rp. {{ number_format($transaction->total_price,2) }}</td>
 				<td>
-					<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Lihat Detail</a>
+					<a href="{{url ('transaction', $transaction->id)}}"class="btn btn-xs btn-link">Lihat Detail</a> | <a href="{{url ('transaction/getBill', $transaction->id)}}"class="btn btn-xs btn-link" target="_blank">Cetak Bukti</a>
 				</td>
 			</tr>
 

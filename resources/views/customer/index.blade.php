@@ -10,7 +10,8 @@
 
 <?php echo $customers->render(); ?><br/>
 <div class="breadcrumb">
-	<a href="{{ URL::to('customer/create') }}">Buat Data</a>
+	<a href="{{ URL::to('customer/create') }}">Buat Data</a> | 
+	<a href="{{ URL::to('customer/report') }}" target="_blank">Buat Laporan</a>
 </div>
 <div class="table-responsive">
 	@include('includes.search_form',['url'=>'customer','link'=>'customer']) 

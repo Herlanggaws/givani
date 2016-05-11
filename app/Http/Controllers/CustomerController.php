@@ -160,4 +160,17 @@ class CustomerController extends Controller
         Customer::destroy($id);
         return redirect('customer')->with('message', 'Data berhasil dihapus!');;
     }
+
+     public function setReport(){
+        return view('customer.set_report');
+        
+    }
+
+    public function report(){
+        $from = \Request::get('from');
+        $to = \Request::get('to');
+        $customers = Customer::all();
+
+        return view('customer.report', compact('customers', 'from', 'to'));  
+    }
 }

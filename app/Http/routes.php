@@ -41,7 +41,16 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('itemout/report','ItemoutController@report');
 	Route::get('itemout/setReport','ItemoutController@setReport');
 
+	Route::get('transaction/report','TransactionController@report');
+	Route::get('transaction/setReport','TransactionController@setReport');
 
+	Route::get('item/report','ItemsController@report');
+	Route::get('item/setReport','ItemsController@setReport');
+
+	Route::get('customer/report','CustomerController@report');
+	Route::get('customer/setReport','CustomerController@setReport');
+
+	Route::get('transaction/getBill/{id}','TransactionController@getBill');
 
 
 	Route::resource('user','UserController');

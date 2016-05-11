@@ -124,7 +124,7 @@ class ItemInController extends Controller
     public function report(){
         $from = \Request::get('from');
         $to = \Request::get('to');
-        $itemIns = ItemIn::whereDate('date', '>=', date($from))->whereDate('date', '<=', date($to))->orderBy('id', 'DESC')->paginate(10);
+        $itemIns = ItemIn::whereDate('date', '>=', date($from))->whereDate('date', '<=', date($to))->orderBy('id', 'DESC');
 
         return view('itemin.report', compact('itemIns', 'from', 'to'));  
     }

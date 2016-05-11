@@ -10,7 +10,9 @@
 
 <?php echo $users->render(); ?><br/>
 <div class="breadcrumb">
+	@if(Auth::user()->role == 'admin')
 	<a href="{{ URL::to('user/create') }}">Buat Data</a>
+	@endif
 </div>
 <div class="table-responsive">
 
