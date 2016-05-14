@@ -10,7 +10,8 @@
 
 <?php echo $transactions->render(); ?><br/>
 <div class="breadcrumb">
-	<a href="{{ URL::to('transaction/setReport') }}">Buat Laporan</a>
+	<a href="{{ URL::to('transaction/setReport') }}">Buat Laporan</a> |
+	<a href="{{ URL::to('customer?page=transaction') }}">Buat Transaksi</a>
 </div>
 <div class="table-responsive">
 	@include('includes.search_form',['url'=>'transaction','link'=>'transaction']) 
