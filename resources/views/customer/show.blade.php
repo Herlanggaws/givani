@@ -90,6 +90,7 @@
 		<tbody>
 			@foreach($prices as $price)
 			<tr>
+				@if(!$price->item->trashed())
 				<td>{{ $price->item->name }}</td>
 				@if($price->sellable == 1)
 				@if($price->is_custom == 1)
@@ -107,6 +108,7 @@
 					@endif
 					
 				</td>
+				@endif
 			</tr>
 
 			@endforeach

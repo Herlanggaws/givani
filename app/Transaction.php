@@ -12,7 +12,7 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-    'date', 'total_price',
+    'date', 'total_price','description',
     ];
 
 

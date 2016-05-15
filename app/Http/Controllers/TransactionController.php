@@ -86,13 +86,16 @@ class TransactionController extends Controller
 
         try {
             $counter = $request->input('counter');
+            $transactionDate = $request->input('date');;
             Transaction::create($request->all());
             $data = Transaction::orderBy('created_at', 'desc')->first();
-            ItemOut::create(['date'=>'2016-04-01', 'description'=>'kode transaksi '.$data->id]);
+            ItemOut::create(['date'=>$transactionDate, 'description'=>'kode transaksi '.$data->id]);
             $dataOut = ItemOut::orderBy('created_at', 'desc')->first();
 
             $total = 0;
             for ($i=0; $i<$counter; $i++) {
+                echo "counter: ".$counter."/";
+
                 $qty = $request->input('qty'.strval($i));
                 $priceId = $request->input('price_id'.strval($i));
                 $subtotal = $request->input('subtotal'.strval($i));

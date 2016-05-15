@@ -25,13 +25,14 @@
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-	
 
+Route::group(['middleware' => 'web'], function () {
+	Route::auth();
 
-	Route::get('/hello',function(){
-		return 'Hello World!';
-	});
+	Route::get('/home', 'HomeController@index');
+
+	Route::get('/', 'HomeController@index');
+
 	Route::get('itemin/get_goods_detail','IteminController@getGoodsDetail');
 
 	// route report
@@ -70,13 +71,5 @@ Route::group(['middleware' => ['web']], function () {
 	// Registration routes...
 	Route::get('auth/register', 'Auth\AuthController@getRegister');
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
-});
-
-Route::group(['middleware' => 'web'], function () {
-	Route::auth();
-
-	Route::get('/home', 'HomeController@index');
-
-	Route::get('/', 'HomeController@index');
 
 });
