@@ -2,7 +2,7 @@
 	{!! Form::label('date', 'Tanggal',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
-		{!! Form::text('date', null, ['class'=> 'form-control1', 'id'=>'datepicker', 'placeholder'=>'Tanggal Masuk']) !!}
+		{!! Form::text('date', null, ['class'=> 'form-control1', 'id'=>'datepicker', 'placeholder'=>'Tanggal Transaksi']) !!}
 	</div>
 </div>
 
@@ -10,10 +10,14 @@
 	{!! Form::label('description', 'Keterangan',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
-		{!! Form::text('description', null, ['class'=> 'form-control1', 'id'=>'focusedinput', 'placeholder'=>'Keterangan Produksi']) !!}
+		{!! Form::text('description', null, ['class'=> 'form-control1', 'id'=>'focusedinput', 'placeholder'=>'Keterangan Transaksi']) !!}
 	</div>
 </div>
 
+<hr/>
+<div id="total">
+	Total : 0
+</div>
 <hr/>
 
 <input type="hidden" id="fieldCounter" name="counter">
@@ -58,7 +62,7 @@
 			<option value=""></option>
 
 			@foreach($customer->prices as $price)
-			@if($price->sellable == 1)
+			@if($price->sellable == 1 && !$price->item->trashed())
 			<option value="{{$price->id}}">{{$price->item->name}} - Rp. {{$price->custom_price}}</option>
 			@endif
 			
@@ -103,6 +107,7 @@
 
 var counter = 0;
 var limit = 3;
+var total = 0;
 
 $(document).ready(function () {
 	$("#fieldCounter").change(checkCounter);
@@ -122,7 +127,7 @@ function addInput(divName, itemId, itemName, qty){
 	var tdItemName ="<td><input class='form-control1' id='focusedinput' type='hidden' name='price_id"+counter+"' value='"+itemId+"'>"+getName(itemName)+"</td>";
 	var tdQty ="<td><input class='form-control1' id='focusedinput' type='hidden' name='qty"+counter+"' value='"+qty+"'>"+qty+"</td>";
 	var tdPrice = "<td>"+getPrice(itemName)+"</td>";
-	var tdSubtotal = "<td><input class='form-control1' id='focusedinput' type='hidden' name='subtotal"+counter+"' value='"+getPrice(itemName)*qty+"'>"+getPrice(itemName)*qty+"</td>";
+	var tdSubtotal = "<td><input class='form-control1' id='subtotal"+counter+"' type='hidden' name='subtotal"+counter+"' value='"+getSubtotal(itemName,qty)+"'>"+getPrice(itemName)*qty+"</td>";
 	newdiv.innerHTML = tdItemName+tdQty+tdPrice+tdSubtotal;
 	document.getElementById(divName).appendChild(newdiv);
 	$("#getId"+counter).change(function(){
@@ -149,9 +154,31 @@ function getPrice(arrayString){
 	return price;
 }
 
+function getSubtotal(arrayString, qty){
+	var subtotal = getPrice(arrayString)*qty;
+	addTotal(subtotal);
+	return subtotal;
+}
+
+function addTotal(subtotal){
+	total = total+subtotal;
+	document.getElementById("total").innerHTML = "Total: "+total;
+}
+
+function decreaseTotal(subtotal){
+	total = total-subtotal;
+	document.getElementById("total").innerHTML = "Total: "+total;
+}
+
 function removeInput(divaName){
+	var subtotal;
 	if(counter>0){
+		var id = counter-1;
+		subtotal = document.getElementById("subtotal"+id).value
+
+		decreaseTotal(subtotal);
 		document.getElementById(divaName).lastChild.remove();
+		
 		counter--;	
 	}
 	updateCounter();
