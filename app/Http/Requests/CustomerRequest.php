@@ -25,12 +25,7 @@ class CustomerRequest extends Request
     {
         return [
         'name' => 'required|min:3',
-        'company_name' => 'required|min:3',
-        'email' => 'required|email',
-        'phone'=>'required',
-        'mobile'=>'required',
         'address'=>'required|max:200',
-        'pos_code'=>'required|min:5'
         ];
     }
 }
