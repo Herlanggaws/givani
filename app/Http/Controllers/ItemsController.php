@@ -40,7 +40,12 @@ class ItemsController extends Controller
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
             $items = Item::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(10);
+            if ($getCategory == "type_id"){
+                $types = Type::where('name','like','%'.$search.'%')->orderBy('name')->first();
+                $items = Item::where($getCategory,'like','%'.$types->id.'%')->orderBy($getCategory,'DESC')->paginate(10);
+            }else{
+                $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(10);
+            }
         }
         
         
