@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $items = Item::where('stock','<=','%'.'minimum_stock'.'%')->orderBy('id')->paginate(10);
+        $items = Item::where('stock','<=','%'.'minimum_stock'.'%')->orderBy('id')->paginate(1000);
         return view('home', compact('items'));
     }
 }

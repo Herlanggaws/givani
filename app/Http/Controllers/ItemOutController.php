@@ -27,7 +27,7 @@ class ItemOutController extends Controller
     }
     else
     {
-      $itemOuts = ItemOut::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(1);   
+      $itemOuts = ItemOut::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(1000);   
     }
     $category = array(''=>'kategori','id'=>'Kode Keluar');
     return view('itemout.index', compact('itemOuts', 'category'));

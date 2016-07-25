@@ -42,13 +42,11 @@ class ItemsController extends Controller
         }else{
             if ($getCategory == "type_id"){
                 $types = Type::where('name','like','%'.$search.'%')->orderBy('name')->first();
-                $items = Item::where($getCategory,'like','%'.$types->id.'%')->orderBy($getCategory,'DESC')->paginate(1);
+                $items = Item::where($getCategory,'like','%'.$types->id.'%')->orderBy($getCategory,'DESC')->paginate(1000);
             }else{
-                $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(1);
+                $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(1000);
             }
         }
-        
-        
 
         $category = array(''=>'kategori','name'=>'Nama Barang', 'type_id'=>'Jenis Barang');
         return view('item.index', compact('items','category'));

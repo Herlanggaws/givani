@@ -35,7 +35,7 @@ class CustomerController extends Controller
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
             $customers = Customer::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $customers = Customer::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory, 'DESC')->paginate(1);
+            $customers = Customer::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory, 'DESC')->paginate(1000);
         }
         $category = array(''=>'kategori','name'=>'Nama','company_name'=>'Nama Perusahaan', 'address'=>'Alamat', 'email'=>'Email');
 
