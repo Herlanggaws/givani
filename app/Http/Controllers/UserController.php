@@ -30,7 +30,7 @@ class UserController extends Controller
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
             $users = User::orderBy('id', 'DESC')->paginate(10);
         }else{
-            $users = User::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(10);
+            $users = User::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(1);
         }
 
         $category = array(''=>'kategori','name'=>'name','email'=>'email');

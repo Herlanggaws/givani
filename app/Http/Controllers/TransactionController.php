@@ -43,7 +43,7 @@ class TransactionController extends Controller
         }
         else
         {
-            $transactions = Transaction::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(10);
+            $transactions = Transaction::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(1);
         }
         $category = array(''=>'kategori','id'=>'Kode Transaksi');
         return view('transaction.index', compact('transactions','category'));

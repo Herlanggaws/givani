@@ -37,7 +37,7 @@ class ItemInController extends Controller
         }
         else
         {
-            $itemIns = ItemIn::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(10);   
+            $itemIns = ItemIn::where($getCategory,'=',$search)->orderBy($getCategory)->paginate(1);   
         }
 
         $category = array(''=>'kategori','id'=>'Kode Masuk');

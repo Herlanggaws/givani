@@ -42,9 +42,9 @@ class ItemsController extends Controller
         }else{
             if ($getCategory == "type_id"){
                 $types = Type::where('name','like','%'.$search.'%')->orderBy('name')->first();
-                $items = Item::where($getCategory,'like','%'.$types->id.'%')->orderBy($getCategory,'DESC')->paginate(10);
+                $items = Item::where($getCategory,'like','%'.$types->id.'%')->orderBy($getCategory,'DESC')->paginate(1);
             }else{
-                $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(10);
+                $items = Item::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(1);
             }
         }
         
