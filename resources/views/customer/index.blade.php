@@ -25,6 +25,7 @@
 
 		<thead>
 			<tr>
+			<th>Kode Pelanggan</th>
 				<th>Nama</th>
 				<th>Nama Perusahaan</th>
 				<th>Alamat</th>
@@ -35,7 +36,7 @@
 		<tbody>
 			@foreach($customers as $customer)
 			<tr>
-
+<td>{{ $customer->id }}</td>
 				<td>{{ $customer->name }}</td>
 				<td>{{ $customer->company_name }}</td>
 				<td>{{ $customer->address }}</td>
