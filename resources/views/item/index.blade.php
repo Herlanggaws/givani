@@ -27,6 +27,7 @@
 
 		<thead>
 			<tr>
+				<th>Kode Barang</th>
 				<th>Nama Barang</th>
 				<th>Harga Produksi</th>
 				<th>Harga Minimum</th>
@@ -40,6 +41,7 @@
 		<tbody>
 			@foreach($items as $item)
 			<tr>
+				<td>{{$item->id}}</td>
 				<td>{{ $item->name }}</td>
 				<td>Rp. {{ number_format($item->production_price,2) }}</td>
 				<td>Rp. {{ number_format($item->minimum_price,2) }}</td>
