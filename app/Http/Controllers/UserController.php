@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -20,108 +21,76 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $search = \Request::get('search');
-        $getCategory = \Request::get('category');
-        
-        if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
-            $users = User::orderBy('id', 'DESC')->paginate(10);
-        }else{
-            $users = User::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory,'DESC')->paginate(1000);
-        }
-
-        $category = array(''=>'kategori','name'=>'name','email'=>'email');
-        
-        return view('user.index', compact('users','category'));
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('user.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        try {
-            User::create($request->all());
-            return redirect('user')->with('message', 'Data berhasil dibuat!');;
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-        } catch (\PDOException $e) {
-            return redirect('user')->with('message', 'Data dengan email tersebut sudah digunakan!');;
-        }
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-    	$user = User::findOrFail($id);
-
-    	if (is_null($user)){
-    		return "ga ada";
-    	}else {
-    		return view('user.show', compact('user'));	
-    	}
-    	
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-    	$user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-
-        $user->update($request->all());
-
-        return redirect('user')->with('message', 'Data berhasil dirubah!');;
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect('user')->with('message', 'Data berhasil dihapus!');;
+        //
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
      /**
      * The attributes that are mass assignable.
      *
@@ -20,4 +20,4 @@ class Customer extends Model
      public function prices(){
     	return $this->hasMany('App\Price');
     }
- }
+}

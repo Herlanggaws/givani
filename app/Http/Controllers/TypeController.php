@@ -20,6 +20,7 @@ use App\Type;
 
 class TypeController extends Controller
 {
+    
 
      /**
      * Create a new controller instance.
@@ -42,7 +43,7 @@ class TypeController extends Controller
         $getCategory = \Request::get('category');
 
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == ""){
-            $types = Type::orderBy('id', 'DESC')->paginate(10);
+            $types = Type::orderBy('id', 'DESC')->get();
         }else {
             $types = Type::where($getCategory,'like','%'.$search.'%')->orderBy($getCategory)->paginate(1000);
         }

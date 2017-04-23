@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemOut extends Model
 {
-    /**
+    //
+     /**
      * The attributes that are mass assignable.
      *
      * @var array

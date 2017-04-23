@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests\ItemInRequest;
 
 use App\Http\Requests;
@@ -10,8 +11,10 @@ use App\Http\Controllers\Controller;
 use App\ItemIn;
 use App\DetailItemIn;
 use App\Item;
+
 class ItemInController extends Controller
 {
+    //
      /**
      * Create a new controller instance.
      *
@@ -33,7 +36,7 @@ class ItemInController extends Controller
         $getCategory = \Request::get('category');
         if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == "")
         {
-            $itemIns = ItemIn::orderBy('id', 'DESC')->paginate(10);
+            $itemIns = ItemIn::orderBy('id', 'DESC')->get();
         }
         else
         {

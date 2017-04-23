@@ -1,104 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
- @include('includes.head')   
+ @include('includes.head')  
+ @yield('custom_css')
+ <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+ <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body class="sticky-header left-side-collapsed"  onload="initMap()">
-    @if (Auth::guest())
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
 
-    @else
-   
-    <section>
-        <!-- left side start-->
-        @include('includes.slide')   
-        <!-- left side end-->
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="index2.html" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>G</b>J</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>GIVANI</b> JAYA</span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
 
-        <!-- main content start-->
-        <div class="main-content main-content2 main-content2copy">
-            <!-- header-starts -->
-            <div class="header-section">
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                <!--toggle button start-->
-                <a class="toggle-btn  menu-collapsed"><i class="fa fa-bars"></i></a>
-                <!--toggle button end-->
+                <span class="hidden-xs"> {{ Auth::user()->name }} </span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
 
-                <!--notification menu start -->
-                
-                @include('includes.notification') 
-                
-                
-                <!--notification menu end -->
-            </div>
-            <!-- //header-ends -->
-            <div id="page-wrapper">
-                <div class="graphs">
-                    @yield('switch')
-                    <div class="xs tabls">
-                        <div class="bs-example4" data-example-id="contextual-table">
-                            @yield('content')
-                        </div>
-                    </div>
+                  <p>
+                   {{ Auth::user()->name }}
+                   <small>Member since Nov. 2012</small>
+                 </p>
+               </li>
+               <!-- Menu Body -->
+
+               <!-- Menu Footer-->
+               <li class="user-footer">
+                <div class="pull-left">
+                  <!--   <a href="#" class="btn btn-default btn-flat">Profile</a> -->
                 </div>
-            </div>
-            <!--footer section start-->
-            @include('includes.footer')
-            <!--footer section end-->
-        </div>
-    </section>
-    <script src="{{ URL::asset('assets/js/jquery.nicescroll.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/scripts.js') }}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ URL::asset('assets/js/bootstrap.min.js') }}"></script>
-    <!-- ------------------------------------------------------------------------------------------- -->
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
+                <div class="pull-right">
+                  <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">Sign out</a>
+                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <div>   </div>
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                        </ul>
-                    </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
+          </li>
+        </ul>
+      </div>
     </nav>
- @endif
-    @yield('content')
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  @include('includes.slide_menu')
 
-    <!-- JavaScripts -->
-    
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      
+     @yield('content')
+   </section>
+
+ </div>
+ <!-- /.content-wrapper -->
+ <footer class="main-footer">
+  <div class="pull-right hidden-xs">
+    <b>Version</b> 2.3.3
+  </div>
+  <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+  reserved.
+</footer>
+
+<!-- Control Sidebar -->
+
+<!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+
+</div>
+<!-- ./wrapper -->
+<script src="{{ URL::asset('assets/plugins/jQuery/jQuery-2.2.0.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{ URL::asset('assets/dist/js/app.min.js')}}"></script>
+@yield('custom_javascript')
+
 </body>
 </html>
+
+
+

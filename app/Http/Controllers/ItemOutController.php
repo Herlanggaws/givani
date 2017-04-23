@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ItemOutRequest;
 use App\ItemOut;
 use App\DetailItemOut;
 use App\Item;
@@ -23,7 +24,7 @@ class ItemOutController extends Controller
     $getCategory = \Request::get('category');
     if (is_null($search) || is_null($getCategory) || $search == "" || $getCategory == "")
     {
-      $itemOuts = ItemOut::orderBy('id', 'DESC')->paginate(10);
+      $itemOuts = ItemOut::orderBy('id', 'DESC')->get();
     }
     else
     {
@@ -43,7 +44,7 @@ class ItemOutController extends Controller
     }
   }
 
-  public function store(Request $request)
+  public function store(ItemOutRequest $request)
   {
     try {
       $counter = $request->input('counter');;

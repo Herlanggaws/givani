@@ -1,199 +1,90 @@
 @extends('layouts.app')
 
-@section('switch')
-<div class="switches">
-    <div class="col-4">
-        <div class="col-md-4 switch-right">
-            <div class="switch-right-grid">
-                <div class="switch-right-grid1">
-                    <h3>STATUS MINGGU INI</h3>
-                    <p>Grafik transaksi minggu ini</p>
-                    <ul>
-                        <li>Pendapatan: $400 USD</li>
-                        <li>Barang Terjual: 20 Items</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sparkline">
-                <canvas id="line" height="150" width="480" style="width: 480px; height: 150px;"></canvas>
-                <script>
-                var lineChartData = {
-                    labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon"],
-                    datasets : [
-                    {
-                        fillColor : "#fff",
-                        strokeColor : "#F44336",
-                        pointColor : "#fbfbfb",
-                        pointStrokeColor : "#F44336",
-                        data : [20,35,45,30,10,65,40]
-                    }
-                    ]
+@section('title', 'Page Title')
 
-                };
-                new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-                </script>
-            </div>
-        </div>
-        <div class="col-md-4 switch-right">
-            <div class="switch-right-grid">
-                <div class="switch-right-grid1">
-                    <h3>STATUS BULAN INI</h3>
-                    <p>Duis aute irure dolor in reprehenderit.</p>
-                    <ul>
-                        <li>Earning: $5,000 USD</li>
-                        <li>Items Sold: 400 Items</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sparkline">
-                <canvas id="bar" height="150" width="480" style="width: 480px; height: 150px;"></canvas>
-                <script>
-                var barChartData = {
-                    labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Mon","Tue","Wed","Thu"],
-                    datasets : [
-                    {
-                        fillColor : "#8BC34A",
-                        strokeColor : "#8BC34A",
-                        data : [25,40,50,65,55,30,20,10,6,4]
-                    }
-                    ]
+@section('sidebar')
+@parent
 
-                };
-                new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
-                </script>
-            </div>
-        </div>
-        <div class="col-md-4 switch-right">
-            <div class="switch-right-grid">
-                <div class="switch-right-grid1">
-                    <h3>ALLTIME STATS</h3>
-                    <p>Duis aute irure dolor in reprehenderit.</p>
-                    <ul>
-                        <li>Earning: $80,000 USD</li>
-                        <li>Items Sold: 8,000 Items</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sparkline">
-                <!--graph-->
-                <link rel="stylesheet" href="{{ URL::asset('assets/css/graph.css') }}">
-                <script src="{{ URL::asset('assets/js/jquery.flot.min.js') }}"></script>
-                
-                <!--//graph-->
-                <script>
-                $(document).ready(function () {
-
-                                    // Graph Data ##############################################
-                                    var graphData = [{
-                                            // Returning Visits
-                                            data: [ [4, 4500], [5,3500], [6, 6550], [7, 7600],[8, 4500], [9,3500], [10, 6550], ],
-                                            color: '#FFCA28',
-                                            points: { radius: 7, fillColor: '#fff' }
-                                        }
-                                        ];
-
-                                    // Lines Graph #############################################
-                                    $.plot($('#graph-lines'), graphData, {
-                                        series: {
-                                            points: {
-                                                show: true,
-                                                radius: 1
-                                            },
-                                            lines: {
-                                                show: true
-                                            },
-                                            shadowSize: 0
-                                        },
-                                        grid: {
-                                            color: '#fff',
-                                            borderColor: 'transparent',
-                                            borderWidth: 10,
-                                            hoverable: true
-                                        },
-                                        xaxis: {
-                                            tickColor: 'transparent',
-                                            tickDecimals: false
-                                        },
-                                        yaxis: {
-                                            tickSize: 1200
-                                        }
-                                    });
-
-                                    // Graph Toggle ############################################
-                                    $('#graph-bars').hide();
-
-                                    $('#lines').on('click', function (e) {
-                                        $('#bars').removeClass('active');
-                                        $('#graph-bars').fadeOut();
-                                        $(this).addClass('active');
-                                        $('#graph-lines').fadeIn();
-                                        e.preventDefault();
-                                    });
-
-                                    $('#bars').on('click', function (e) {
-                                        $('#lines').removeClass('active');
-                                        $('#graph-lines').fadeOut();
-                                        $(this).addClass('active');
-                                        $('#graph-bars').fadeIn().removeClass('hidden');
-                                        e.preventDefault();
-                                    });
-
-                                });
-</script>
-<div id="graph-wrapper">
-    <div class="graph-container">
-        <div id="graph-lines"> </div>
-        <div id="graph-bars"> </div>
-    </div>
-</div>
-</div>
-</div>
-<div class="clearfix"></div>
-
+<p>This is appended to the master sidebar.</p>
 @endsection
 
 @section('content')
 <div class="table-responsive">
 
 
-    <div style="height: 60px;">
+	<div style="height: 60px;">
 
-    </div>
+	</div>
 
-    <table class="table table-bordered">
-
-
-        <thead>
-            <tr>
-                <th>Nama Barang</th>
-                <th>Stock</th>
-                <th>Minimum Stock</th>
-                <th>Jenis Barang</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($items as $item)
-            <tr>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->stock }}</td>
-                <td>{{ $item->minimum_stock }}</td>
-                <td>{{ $item->type->name }}</td>
-                <td>
-                    <a href="{{ URL::to('itemin/create') }}" class="btn btn-xs btn-link">Tambah Barang </a>
-                </td>
-            </tr>
-
-            @endforeach
+	<table class="table table-bordered">
 
 
+		<thead>
+			<tr>
+				<th>Nama Barang</th>
+				<th>Stock</th>
+				<th>Minimum Stock</th>
+				<th>Jenis Barang</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach($items as $item)
+			<tr>
+				<td>{{ $item->name }}</td>
+				<td>{{ $item->stock }}</td>
+				<td>{{ $item->minimum_stock }}</td>
+				<td>{{ $item->type->name }}</td>
+				<td>
+					<a href="{{ URL::to('itemin/create') }}" class="btn btn-xs btn-link">Tambah Barang </a>
+				</td>
+			</tr>
+
+			@endforeach
 
 
-        </tbody>
-    </table>
+
+
+		</tbody>
+	</table>
 </div>
-
 @endsection
 
+@section('custom_javascript')
 
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+	$.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ URL::asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="{{ URL::asset('assets/plugins/morris/morris.min.js')}}"></script>
+<!-- Sparkline -->
+<script src="{{ URL::asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
+<!-- jvectormap -->
+<script src="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+<script src="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+<!-- jQuery Knob Chart -->
+<script src="{{ URL::asset('assets/plugins/knob/jquery.knob.js')}}"></script>
+<!-- daterangepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="{{ URL::asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<!-- datepicker -->
+<script src="{{ URL::asset('assets/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+<!-- Slimscroll -->
+<script src="{{ URL::asset('assets/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
+<!-- FastClick -->
+<script src="{{ URL::asset('assets/plugins/fastclick/fastclick.js')}}"></script>
+<!-- AdminLTE App -->
 
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ URL::asset('assets/dist/js/pages/dashboard.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ URL::asset('assets/dist/js/demo.js')}}"></script>
+@stop

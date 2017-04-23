@@ -1,52 +1,28 @@
-<title>Easy Admin Panel an Admin Panel Category Flat Bootstrap Responsive Website Template | Blank Page :: w3layouts</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Bootstrap Core CSS -->
-<link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="{{ URL::asset('assets/css/style.css') }}" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="{{ URL::asset('assets/css/font-awesome.css')}}" rel="stylesheet"> 
-<!-- jQuery -->
-<!-- lined-icons -->
-<link rel="stylesheet" href="{{ URL::asset('assets/css/icon-font.min.css') }}" type='text/css' />
-<!-- //lined-icons -->
-<!-- chart -->
-<script src="{{ URL::asset('assets/js/Chart.js') }}"></script>
-<!-- //chart -->
-<!--animate-->
-<link href="{{ URL::asset('assets/css/animate.css') }}" rel="stylesheet" type="text/css" media="all">
-
-
-
-<!-- <link rel="stylesheet" href="{{ URL::asset('assets/css/style_choosen.css') }}">
- -->
-<link rel="stylesheet" href="{{ URL::asset('assets/css/prism.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('assets/css/chosen.css') }}">
-
-<script src="{{ URL::asset('assets/js/wow.min.js') }}"></script>
-<script>
-new WOW().init();
-</script>
-<!--//end-animate-->
-<!----webfonts--->
-<link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
-<!---//webfonts---> 
-<!-- Meters graphs -->
-<script src="{{ URL::asset('assets/js/jquery-1.10.2.min.js') }}"></script>
-<!-- Placed js at the end of the document so the pages load faster -->
-
-<link href="{{ URL::asset('assets/css/jquery-ui.css') }}" rel="stylesheet">
-<script src="{{ URL::asset('assets/js/jquery-1.10.2.js') }}"></script>
-<script src="{{ URL::asset('assets/js/jquery-ui.js') }}"></script>
-
-<script>
-$(function() {
-	$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
-	$( "#from" ).datepicker({ dateFormat: 'yy-mm-dd' });
-	$( "#to" ).datepicker({ dateFormat: 'yy-mm-dd' });
-});
-</script>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link href="{{ URL::asset('assets/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link href="{{ URL::asset('assets/dist/css/AdminLTE.min.css')}}" rel="stylesheet">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  folder instead of downloading all of them to reduce the load. -->
+  <link href="{{ URL::asset('assets/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="{{ URL::asset('assets/plugins/iCheck/flat/blue.css')}}" rel="stylesheet">
+  <!-- Morris chart -->
+  <link href="{{ URL::asset('assets/plugins/morris/morris.css')}}" rel="stylesheet">
+  <!-- jvectormap -->
+  <link href="{{ URL::asset('assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet">
+  <!-- Date Picker -->
+  <link href="{{ URL::asset('assets/plugins/datepicker/datepicker3.css')}}" rel="stylesheet">
+  <!-- Daterange picker -->
+  <link href="{{ URL::asset('assets/plugins/daterangepicker/daterangepicker-bs3.css')}}" rel="stylesheet">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}" rel="stylesheet">

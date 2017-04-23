@@ -2,7 +2,7 @@
 	{!! Form::label('date', 'Tanggal',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
-		{!! Form::text('date', null, ['class'=> 'form-control1', 'id'=>'datepicker', 'placeholder'=>'Tanggal Masuk']) !!}
+		{!! Form::text('date', null, ['class'=> 'form-control', 'id'=>'datepicker', 'placeholder'=>'Tanggal Masuk']) !!}
 	</div>
 </div>
 
@@ -10,7 +10,7 @@
 	{!! Form::label('description', 'Keterangan',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
-		{!! Form::text('description', null, ['class'=> 'form-control1', 'id'=>'focusedinput', 'placeholder'=>'Keterangan Produksi']) !!}
+		{!! Form::text('description', null, ['class'=> 'form-control', 'id'=>'focusedinput', 'placeholder'=>'Keterangan Produksi']) !!}
 	</div>
 </div>
 
@@ -50,7 +50,7 @@
 <div class="form-group">
 	{!! Form::label('chose', 'Pilih Barang',['class'=>'col-sm-2 control-label']) !!}
 	<div class="col-sm-8">
-		<select data-placeholder="Pilih Barang..." class="chosen-select" style="width:350px;" tabindex="2" name="item" id="itemId">
+		<select data-placeholder="Pilih Barang..." class="form-control select2" style="width:350px;" tabindex="2" name="item" id="itemId">
 			<option value=""></option>
 
 			@foreach($items as $item)
@@ -65,7 +65,7 @@
 	{!! Form::label('qty', 'Jumlah',['class'=>'col-sm-2 control-label']) !!}
 
 	<div class="col-sm-8">
-		{!! Form::number('qty', null, ['class'=> 'form-control1', 'id'=>'qty', 'placeholder'=>'Jumlah']) !!}
+		{!! Form::number('qty', null, ['class'=> 'form-control', 'id'=>'qty', 'placeholder'=>'Jumlah']) !!}
 	</div>
 </div>
 
@@ -94,49 +94,64 @@
 
 
 
+
+
+
+@section('custom_javascript')
+<script src="{{ URL::asset('assets/plugins/select2/select2.full.min.js')}}"></script>
+<script src="{{ URL::asset('assets/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+
+
 <script type="text/javascript">
 
-var counter = 0;
-var limit = 3;
-
-$(document).ready(function () {
-	$("#fieldCounter").change(checkCounter);
-	checkCounter();
-});
-
-function checkCounter(){
-	if (counter>0){
-		document.getElementById("mySubmit").disabled = false;
-	} else {
-		document.getElementById("mySubmit").disabled = true;
-	}
-}
-function addInput(divName, itemId, itemName, qty){
-	var newdiv = document.createElement('tr');
-	newdiv.innerHTML = "<td><input class='form-control1' id='focusedinput' type='hidden' name='item_id"+counter+"' value='"+itemId+"'>"+itemName+"</td><td><input class='form-control1' id='focusedinput' type='hidden' name='qty"+counter+"' value='"+qty+"'>"+qty+"</td>";
-	document.getElementById(divName).appendChild(newdiv);
-	$("#getId"+counter).change(function(){
-
-		$.get( "get_goods_detail", { id: $(this).val() } )
-		.done(function( data ) {
-			alert( "Data Loaded: " + data );
-		});
+	$('#datepicker').datepicker({
+		autoclose: true,
+		format: 'yyyy-mm-dd'
 	});
-	counter++;
-	updateCounter();
-}
 
-function removeInput(divaName){
-	if(counter>0){
-		document.getElementById(divaName).lastChild.remove();
-		counter--;	
+	$(".select2").select2();
+
+	var counter = 0;
+	var limit = 3;
+
+	$(document).ready(function () {
+		$("#fieldCounter").change(checkCounter);
+		checkCounter();
+	});
+
+	function checkCounter(){
+		if (counter>0){
+			document.getElementById("mySubmit").disabled = false;
+		} else {
+			document.getElementById("mySubmit").disabled = true;
+		}
 	}
-	updateCounter();
-}
+	function addInput(divName, itemId, itemName, qty){
+		var newdiv = document.createElement('tr');
+		newdiv.innerHTML = "<td><input class='form-control1' id='focusedinput' type='hidden' name='item_id"+counter+"' value='"+itemId+"'>"+itemName+"</td><td><input class='form-control1' id='focusedinput' type='hidden' name='qty"+counter+"' value='"+qty+"'>"+qty+"</td>";
+		document.getElementById(divName).appendChild(newdiv);
+		$("#getId"+counter).change(function(){
 
-function updateCounter(){
-	document.getElementById('fieldCounter').value = counter;
-	checkCounter();
+			$.get( "get_goods_detail", { id: $(this).val() } )
+			.done(function( data ) {
+				alert( "Data Loaded: " + data );
+			});
+		});
+		counter++;
+		updateCounter();
+	}
+
+	function removeInput(divaName){
+		if(counter>0){
+			document.getElementById(divaName).lastChild.remove();
+			counter--;	
+		}
+		updateCounter();
+	}
+
+	function updateCounter(){
+		document.getElementById('fieldCounter').value = counter;
+		checkCounter();
 	// "<input type='text' id='fieldCounter' name='counter' value='"+counter+"'>";
 }
 
@@ -165,17 +180,17 @@ function getItem(item, qty, divaName){
 <script src="{{ URL::asset('assets/js/chosen.jquery.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('assets/js/prism.js') }}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-var config = {
-	'.chosen-select'           : {},
-	'.chosen-select-deselect'  : {allow_single_deselect:true},
-	'.chosen-select-no-single' : {disable_search_threshold:10},
-	'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-	'.chosen-select-width'     : {width:"95%"}
-}
-for (var selector in config) {
-	$(selector).chosen(config[selector]);
-}
+	var config = {
+		'.chosen-select'           : {},
+		'.chosen-select-deselect'  : {allow_single_deselect:true},
+		'.chosen-select-no-single' : {disable_search_threshold:10},
+		'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+		'.chosen-select-width'     : {width:"95%"}
+	}
+	for (var selector in config) {
+		$(selector).chosen(config[selector]);
+	}
 </script>
-
+@stop
 
 

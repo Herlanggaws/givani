@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-
 class Type extends Model
 {
-    use SoftDeletes;
+     use SoftDeletes;
      /**
      * The attributes that should be mutated to dates.
      *
@@ -32,9 +30,4 @@ class Type extends Model
     public function item(){
         return $this->hasMany('App\Item');
     }
-
-   
-
-
-
 }

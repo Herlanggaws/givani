@@ -1,6 +1,7 @@
 @extends('layouts.report_default')
 @section('content')
-<h3 class="blank1">Bukti Transaksi</h3>
+
+
 
 
 <table>
@@ -8,7 +9,7 @@
 	<tr>
 		<td>Kode Transaksi</td>
 		<td>&nbsp;:&nbsp;</td>
-		<td>{{$transaction->id}}</td>
+		<td>TS{{$transaction->id}}</td>
 	</tr>
 	<tr>
 		<td>Atas Nama</td>
@@ -50,5 +51,37 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
+
+
+<div class="table-responsive" style="position: fixed;
+    bottom: 0;
+    width: 100%;">
+	<table class="table">
+		<thead>
+			<tr>
+				<td width="50%" align="center">
+				<p align="center"></p>
+					Yang Menerima,
+					
+					<br>
+					<br>
+					<br>
+					<br>
+					(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+				</td>
+				<td width="50%" align="center">
+				<p align="center"></p>
+					Hormat Kami,
+					
+					<br>
+					<br>
+					<br>
+					<br>
+					(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+				</td>
+			</tr>
+		</thead>
+		
 </div>
 @stop
