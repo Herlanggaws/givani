@@ -32,13 +32,11 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Daftar Data Barang</h3>
+            <h3 class="box-title">Daftar Data Konsumen</h3>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
-            <div>
-              <a href="{{ URL::to('item/create') }}" class="btn btn-primary">Buat Data</a>
-            </div>
+           
             
             <br/>
             <table id="example1" class="table table-bordered table-striped">
@@ -76,9 +74,7 @@
         </table>
       </div>
       <!-- /.box-body -->
-      <div class="box-footer">
-       <a href="{{ URL::to('item/create') }}" class="btn btn-primary">Buat Data</a>
-     </div>
+    
    </div>
 
    <!-- /.box -->

@@ -58,7 +58,7 @@
              @foreach($transactions as $transaction)
 
              <tr>
-               <td>{{ $transaction->id }}</td>
+               <td>TS{{ $transaction->id }}</td>
                <td>{{ $transaction->date }}</td>
                <td>{{$transaction->detailTransaction->first()->price->customer->name}}</td>
                <td>{{$transaction->description}}</td>
