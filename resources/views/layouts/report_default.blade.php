@@ -30,7 +30,7 @@
 						<table>
 							<tr>
 								<td width="50%">
-									<img src="{{ URL::asset('assets/img/mlks_logo.jpg')}}"  width="200">	
+									<img src="{{ URL::asset('assets/img/logo.png')}}"  width="150">	
 								</td>
 								<td width="50%" align="center">
 								<p align="center" style="font-size: 70%;">
