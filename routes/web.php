@@ -27,3 +27,4 @@ Route::resource('itemin','ItemInController');
 Route::resource('itemout','ItemOutController');
 
 Route::get('transaction/getBill/{id}','TransactionController@getBill');
+Route::resource('price','PriceController');

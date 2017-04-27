@@ -114,9 +114,9 @@
 <!-- ./wrapper -->
 <script src="{{ URL::asset('assets/plugins/jQuery/jQuery-2.2.0.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="{{ URL::asset('assets/dist/js/app.min.js')}}"></script>
-@yield('custom_javascript')
 
+@yield('custom_javascript')
+<script src="{{ URL::asset('assets/dist/js/app.min.js')}}"></script>
 </body>
 </html>
 
